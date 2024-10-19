@@ -7,34 +7,24 @@ Professor Frankie
 
 PDF File: file:///C:/Users/Joe/Desktop/Classes/191%20CISC%20-%20Intermediate%20Java%20Programming/Semester%20Project/Week%200/CISC191%20-%20Semester%20Project%20Plan.pdf
 
-*** Semester Project Plan ***
+Video Explaining the Design :
+https://youtu.be/WIMcOQBaQ6o
+
+**** Semester Project Plan ****
 
 Planned Working Time
 
 I will work on this project on Monday, Wednesday, and Friday from 1pm - 5pm.
 
-Project Pitch
+-Project Pitch-
 
-	Idle Games have been a favorite game genre of mine to pass time to while doing other things. They help users gain a sense of growth and the best ways to go about approaching growing quicker, sooner, faster. There will be a prestige system to encourage long-term play with the mechanics that exist within the game. I want to make the game enjoyable and easy for anyone to understand and get into. The main gameplay loop is:
+Idle Games have been a favorite game genre of mine to pass time to while doing other things. They help users gain a sense of growth and the best ways to go about approaching growing quicker, sooner, faster. There will be a prestige system to encourage long-term play with the mechanics that exist within the game. I want to make the game enjoyable and easy for anyone to understand and get into. The main gameplay loop is:
 
 Press a button to increase ‘Cash’
 Use ‘Cash’ to buy upgrades that increase cash gain
 After gaining a certain amount of ‘Cash’ allows the user to reset the game. They will gain a unique currency that helps speed up gaining cash even quicker from the beginning of the game.
 The game will be presented through a GUI that has many buttons for increasing cash, increasing the amount of cash gained per click, and a prestige button to reset the game with extra boons. 
 Currently the GUI has labels for displaying the current cash amount, the buttons for increasing the amount of cash gained, buttons for increasing the multiplier for the amount of cash gained, and a price for the button that is displayed with a label. This is an alpha version of the GUI. I intend on creating many buttons with different functions that ultimately increase the amount of cash gained.
-
---- Not in the read me here lol ---
-
-* This is an alternative to the mock up for the GUI. It has a borderLayout in another borderLayout The sections of the layout will be named accordingly with panels added to those sections to allow for flexible design. I will color the panels and will try to add a feature that lets you choose a theme that changes the colors of the panels to a preset color scheme.
-
-
-
-
-
-
-
-
-
 
 CRC Cards
 Class Name: IceCreamModel
@@ -123,17 +113,7 @@ Switch
 Case “”
 IceCreamButton
 IceCreamView
-IceCreamModel
-
-
-Video Explaining the Design 
-https://youtu.be/WIMcOQBaQ6o
-
-UML Diagram
-
---- Not in the read me here lol ---
-
-* This is my current UML diagram. It shows the connections between my four classes. The IceCreamView class extends to a JFrame and the IceCreamButton class extends to a JButton. The IceCreamButtonListener class implements the ActionListener interface and takes in the model, the view, and the button add to it. It will have many actions so I decided to go with a switch statement to give each button their own unique algorithm. The model should contain the getters and setters for the game. The view will contain the JFrame, JPanels, and JLabels. There will also be IceCreamButtons that I create within the view class but they will be a JButton with extra parameters. 
+IceCreamModel 
 
 LO1: Employ design principles of object-oriented programming 
 There will be four main classes, one for the model, one for the view (GUI), one for the button, and the last one will be an actionListener for the button. I made CRC cards to help with defining the responsibilities of each class. I am using a Model-View-Controller design pattern for my GUI so that I can organize my classes for their intended purpose. The model will hold all math behind the game along with accessors and mutators. The view will contain the JFrame and objects that will be seen on the GUI like JPanels, JLabels, JButtons, etc. I have made CRC cards to help visualize what each class will contain and how to approach designing their features and fields.
