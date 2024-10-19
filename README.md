@@ -10,6 +10,9 @@ PDF File: file:///C:/Users/Joe/Desktop/Classes/191%20CISC%20-%20Intermediate%20J
 Video Explaining the Design :
 https://youtu.be/WIMcOQBaQ6o
 
+Github Repository:
+https://github.com/JoeR99/myCISC191project/tree/main/src
+
 **** Semester Project Plan ****
 
 Planned Working Time
