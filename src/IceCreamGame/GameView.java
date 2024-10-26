@@ -1,7 +1,6 @@
 package IceCreamGame;
 
 import java.awt.Dimension;
-
 import javax.swing.JFrame;
 
 public class GameView extends JFrame
@@ -16,12 +15,13 @@ public class GameView extends JFrame
 
 	private final int WIDTH = 1280;
 	private final int HEIGHT = 720;
+
 	
 	public GameView(GameModel model)
 	{
 
 		this.gameModel = model;
-		
+	
 		OuterPanel outerPanel = new OuterPanel(gameModel);
 
 		this.add(outerPanel);

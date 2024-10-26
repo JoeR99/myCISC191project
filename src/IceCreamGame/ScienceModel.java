@@ -12,6 +12,8 @@ public class ScienceModel
 	
 	private int scienceGainModifier = 1;
 	
+	private int statScienceModifier = 1;
+	
 	private int scienceCashUpgradeCost = 10;
 	
 	private int scienceExperienceUpgradeCost = 50;
@@ -47,6 +49,11 @@ public class ScienceModel
 		return scienceExperienceUpgradeCost;
 	}
 	
+	public int getStatScienceModifier()
+	{
+		return statScienceModifier;
+	}
+	
 	// ===================================
 
 	// Setter Methods
@@ -61,6 +68,11 @@ public class ScienceModel
 	public void increaseScienceGainModifier()
 	{
 		scienceGainModifier++;
+	}
+	
+	public void increaseStatScienceModifier()
+	{
+		statScienceModifier++;
 	}
 	
 	public void increaseMaximumScience()
@@ -78,9 +90,14 @@ public class ScienceModel
 		scienceExperienceUpgradeCost *= 1.15;
 	}
 	
+	public void setScienceToMaximum()
+	{
+		currentScience = maximumScience;
+	}
+	
 	// ===================================
 	
-	// Upgrade Checker
+	// Upgrade Checker | Maximum Science Checker
 	
 	// ===================================
 	
@@ -93,6 +110,11 @@ public class ScienceModel
 	{
 		return currentScience >= scienceExperienceUpgradeCost;
 
+	}
+	
+	public boolean isScienceMaxed()
+	{
+		return currentScience >= maximumScience;
 	}
 	
 	// ===================================
@@ -119,6 +141,6 @@ public class ScienceModel
 	
 	public void updateScienceGainMultilier()
 	{
-		scienceGainMultiplier = scienceGainModifier;
+		scienceGainMultiplier = scienceGainModifier * statScienceModifier;
 	}
 }

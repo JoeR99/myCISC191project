@@ -37,7 +37,6 @@ public class CashButtonHandler implements ActionHandler
 
 	class ShopCashScooperUpgradeHandler implements ActionHandler
 	{
-		
 		private GameModel gameModel;
 		private OuterPanel outerView;
 		private InnerPanel innerView;
@@ -94,76 +93,7 @@ public class CashButtonHandler implements ActionHandler
 		
 
 	}
-	
-	// ===================================
-	
-	// Stat Upgrade Cash Value Handler Class
-		
-	// ===================================
-	
-	class StatCashUpgradeHandler implements ActionHandler
-	{
-		private GameModel gameModel;
-		private InnerPanel innerView;
-			
-		public StatCashUpgradeHandler(GameModel model, InnerPanel innerView)
-		{
-			this.gameModel = model;
-			this.innerView = innerView;
-		}
 
-		@Override
-		public void handleAction()
-		{
-			if ( gameModel.getExperienceModel().experienceStatPointsChecker() == true )
-			{
-				gameModel.getExperienceModel().pickModifier(); // Stat Points -1
-				gameModel.getCashModel().increaseExperienceCashModifier(); // Cash Modifier +
-				gameModel.getExperienceModel().increaseStatCashModifierLevel();
-				
-				
-				gameModel.getCashModel().updateCashMultiplier();
-				
-			}
-				
-		       innerView.updateInnerUI(); // Update UI 	
-		}
-			
-	}
-	
-	// ===================================
-	
-	// Stat Upgrade Experience Value Handler Class
-		
-	// ===================================
-	
-	class StatExperienceUpgradeHandler implements ActionHandler
-	{
-		private GameModel gameModel;
-		private InnerPanel innerView;
-		
-		public StatExperienceUpgradeHandler(GameModel model, InnerPanel innerView)
-		{
-			this.gameModel = model;
-			this.innerView = innerView;
-		}
 
-		@Override
-		public void handleAction()
-		{
-			if ( gameModel.getExperienceModel().experienceStatPointsChecker() == true ) 
-			{
-				gameModel.getExperienceModel().pickModifier(); // Stat Points -1
-				gameModel.getExperienceModel().increaseStatExperienceModifier(); // EXP Modifier +1
-				gameModel.getExperienceModel();
-				
-				
-				gameModel.getExperienceModel().updateExperienceMultiplier();
-			}
-		
-		    innerView.updateInnerUI(); // Update UI 	
-
-		}
-	}
 	
 	

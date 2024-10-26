@@ -21,9 +21,11 @@ public class CashModel
 	
 	private int shopCashModifier = 1;
 	
-	private int experienceCashModifier = 1;
+	private int statCashModifier = 1;
 	
 	private int iceCreamValueModifier = 1;
+	
+	private int experienceShopCashmodifier = 1;
 	
 	// ===================================
 
@@ -61,6 +63,11 @@ public class CashModel
 		return iceCreamValueUpgradeCost;
 	}
 	
+	public int getEXPShopCashModifier()
+	{
+		return experienceShopCashmodifier;
+	}
+	
 	// ===================================
 
 	// Setter Methods
@@ -93,9 +100,9 @@ public class CashModel
 		shopCashModifier++;
 	}
 	
-	public void increaseExperienceCashModifier()
+	public void increaseStatCashModifier()
 	{
-		experienceCashModifier++;
+		statCashModifier++;
 	}
 	
 	public void buyScooperUpgrade()
@@ -119,6 +126,12 @@ public class CashModel
 		increaseIceCreamValueLevel();
 		updateCashMultiplier();
 	}
+	
+	public void increaseExperienceShopCashModifier()
+	{
+		experienceShopCashmodifier++;
+	}
+	
 	// ===================================
 	
 	// Upgrade Checker
@@ -154,7 +167,7 @@ public class CashModel
 	public void updateCashMultiplier()
 	{
 		iceCreamValueModifier = iceCreamValueLevel;
-		cashMultiplier = shopCashModifier * iceCreamValueModifier * experienceCashModifier;
+		cashMultiplier = shopCashModifier * iceCreamValueModifier * statCashModifier * experienceShopCashmodifier;
 	}
 	
 	public void updateCashModel()

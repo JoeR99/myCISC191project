@@ -60,35 +60,34 @@ public class InnerPanel extends JPanel
 	private CustomButton scoopingButton = new CustomButton(120, 50, Color.PINK,"ScoopingButton", "1x", Color.BLACK, boldSerif_12, scooperIcon);
 	
 	// EXP Slider
+	private CustomLabel experienceSliderLabel = new CustomLabel("Level: 1", boldSerif_12, Color.BLACK);
 	private JSlider experienceSlider = new JSlider(JSlider.HORIZONTAL, 0, 10, 0); // Horizontal slider with min value 0, max value 10, and initial value 0
 	
-	private CustomLabel experienceSliderLabel = new CustomLabel("Level: 1", boldSerif_12, Color.BLACK);
+	private CustomLabel currentExperienceLabel = new CustomLabel("0", boldSerif_12, Color.BLACK);
+	private CustomLabel maximumExperienceLabel = new CustomLabel("/ 100", boldSerif_12, Color.BLACK);
+
+	
 	private CustomLabel statPointsLabel = new CustomLabel("Stat Points: 1", boldSerif_12, Color.BLACK);
 	
 	// Science Slider
-	private JSlider scienceSlider = new JSlider(JSlider.HORIZONTAL, 0, 10, 0); // Horizontal slider with min value 0, max value 10, and initial value 0
-	private Timer scienceTimer = new Timer(100, new ActionListener()
-			{
-				@Override
-				public void actionPerformed(ActionEvent e)
-				{
-					System.out.println("Gain Science!");
-				}
-			});
+	private JSlider scienceSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 0); // Horizontal slider with min value 0, max value 10, and initial value 0
+	private Timer scienceTimer;
 	
+	// Stat Upgrade Buttons
+	private CustomButton statCashUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatCashUpgrade", "CASH x1", Color.BLACK, boldSerif_12);
+	private CustomButton statExperienceUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatExperienceUpgrade", "EXP x1", Color.BLACK, boldSerif_12);
+	private CustomButton statScienceUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatScienceUpgrade", "SCI x1", Color.BLACK, boldSerif_12);
 	
 	private CustomLabel currentScienceLabel = new CustomLabel("0", boldSerif_12, Color.BLACK);
 	private CustomLabel maximumScienceLabel = new CustomLabel("/ 100", boldSerif_12, Color.BLACK);
 
 	
-	// Stat Upgrade Buttons
-	private CustomButton statCashUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatCashUpgrade", "CASH x1", Color.BLACK, boldSerif_12);
-	private CustomButton statExperienceUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatExperienceUpgrade", "EXP x1", Color.BLACK, boldSerif_12);
-
 
 		
 	public InnerPanel(GameModel model, OuterPanel outerPanel)
 	{
+		
+		
 		this.gameModel = model;
 		
 		this.setLayout(new BorderLayout());
@@ -109,10 +108,19 @@ public class InnerPanel extends JPanel
 		leftPanel.add(experienceSliderLabel); // EXP SLIDER
 		
 		
+		// ===================================
+
+		// Experience Slider and Buttons
+		
+		// ===================================
+		
 		// Experience Slider
 		experienceSlider.setPreferredSize(new Dimension(140,4));
 		experienceSlider.setEnabled(false);
 		leftPanel.add(experienceSlider);
+		leftPanel.add(currentExperienceLabel);
+		leftPanel.add(maximumExperienceLabel);
+		
 		
 		leftPanel.add(statPointsLabel); // STAT POINTS
 		
@@ -123,6 +131,15 @@ public class InnerPanel extends JPanel
 		statExperienceUpgradeButton.addActionListener(new ButtonListener("StatExperienceUpgrade", new StatExperienceUpgradeHandler(gameModel, this)));
 		leftPanel.add(statExperienceUpgradeButton);
 		
+		statScienceUpgradeButton.addActionListener(new ButtonListener("StatScienceUpgrade", new statScienceUpgradeButtonHandler(gameModel, this)));
+		leftPanel.add(statScienceUpgradeButton);
+		
+		// ===================================
+
+		// Science Slider, Timer, and Buttons
+		
+		// ===================================
+		
 		// Science Slider
 		CustomLabel scienceLabel = new CustomLabel("SCIENCE", boldSerif_12 , Color.BLACK); // SCIENCE 
 		leftPanel.add(scienceLabel);
@@ -132,6 +149,28 @@ public class InnerPanel extends JPanel
 		leftPanel.add(scienceSlider);
 		leftPanel.add(currentScienceLabel);
 		leftPanel.add(maximumScienceLabel);
+		
+		scienceTimer = new Timer(100, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e)
+			{
+				if ( !model.getScienceModel().isScienceMaxed() )
+				{
+				scienceTimer.start();
+				model.getScienceModel().increaseCurrentScience();
+				
+				System.out.println("Gained Science! | Total Science: " + model.getScienceModel().getCurrentScience());
+				} else {
+					model.getScienceModel().setScienceToMaximum();
+					System.out.println("Science Is Maxed!");
+					scienceTimer.stop();
+
+				}
+				updateInnerUI(); // Update UI 	
+			}
+		});
+		
+		scienceTimer.start(); // Starts the science timer for the slider
 				
 		this.add(leftPanel, BorderLayout.WEST); // Add Sub Panel to Inner Panel
 
@@ -146,6 +185,12 @@ public class InnerPanel extends JPanel
 
 		// RIGHT PANEL ********************************************************************************************************************************* //
 
+		// ===================================
+
+		// Switch Shop Buttons
+		
+		// ===================================
+		
 		// SHOP BUTTONS / LISTENERS
 		CustomButton switchToCashShopButton = new CustomButton(70, 30, Color.CYAN,"SHOP_PAGE", "SHOP", Color.BLACK, boldSerif_12);
 		CustomButton switchToExperienceShopButton = new CustomButton(70, 30, Color.BLUE,"SHOP_PAGE", "EXP", Color.WHITE, boldSerif_12);
@@ -167,30 +212,42 @@ public class InnerPanel extends JPanel
 		// LOWER PANEL ********************************************************************************************************************************* //
 
 		this.add(lowerPanel, BorderLayout.SOUTH); // Add Sub Panel to Inner Panel
-		
 	}
 	
 	public void updateInnerUI()
 	{
+		CashModel cashModel = gameModel.getCashModel();
+		ExperienceModel expModel = gameModel.getExperienceModel();
+		ScienceModel scienceModel = gameModel.getScienceModel();
+		
 		// Cash
-		cashLabel.setText("Cash: $" + gameModel.getCashModel().getCurrentCash());
+		cashLabel.setText("Cash: $" + cashModel.getCurrentCash());
 		
 		// Main Button
-		scoopingButton.setText(gameModel.getCashModel().getCashMultiplier() + "x");
+		scoopingButton.setText(cashModel.getCashMultiplier() + "x");
 		
 		// Experience Level Slider
-		experienceSliderLabel.setText("Level:  " + gameModel.getExperienceModel().getExperienceLevel());
-		experienceSlider.setValue(gameModel.getExperienceModel().getCurrentExperience());
-		experienceSlider.setMaximum(gameModel.getExperienceModel().getExperienceLevelUpCost());
+		experienceSliderLabel.setText("Level:  " + expModel.getExperienceLevel());
+		experienceSlider.setValue(expModel.getCurrentExperience());
+		experienceSlider.setMaximum(expModel.getExperienceLevelUpCost());
+		
+		currentExperienceLabel.setText("" + expModel.getCurrentExperience());
+		maximumExperienceLabel.setText("/ " + expModel.getExperienceLevelUpCost());
+
 		
 		// Stat Points Label and Buttons
-		statPointsLabel.setText("Stat Points: " + gameModel.getExperienceModel().getExperienceStatPoints());
-		statCashUpgradeButton.setText("CASH x" + gameModel.getExperienceModel().getStatCashModifier());
-		statExperienceUpgradeButton.setText("EXP x" + gameModel.getExperienceModel().getStatExperienceModifier());
+		statPointsLabel.setText("  Stat Points: " + expModel.getExperienceStatPoints());
+		statCashUpgradeButton.setText("CASH x" + expModel.getStatCashModifier()); // Stat Cash
+		statExperienceUpgradeButton.setText("EXP x" + expModel.getStatExperienceModifier()); // Stat EXP
+		statScienceUpgradeButton.setText("SCI x" + scienceModel.getStatScienceModifier()); // Stat Science 
 		
 		// Science Labels and Slider
-		
-		
+		int currentScience = scienceModel.getCurrentScience();
+		int maximumScience = scienceModel.getMaximumScience();
+		scienceSlider.setValue(currentScience);
+		currentScienceLabel.setText("" + currentScience);
+		scienceSlider.setMaximum(maximumScience);
+		maximumScienceLabel.setText("/ " + maximumScience);
 		
 	}
 	

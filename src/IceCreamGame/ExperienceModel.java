@@ -9,6 +9,9 @@ public class ExperienceModel
 	
 	private int experienceLevel = 1;
 	
+	private int experienceMultiplier = 1;
+
+	
 	private int experienceLevelUpCost = 100;
 	
 	// Stat Points
@@ -19,9 +22,15 @@ public class ExperienceModel
 	
 	private int statExperienceModifier = 1;
 	
-	private int experienceShopModifier = 1;
+	// Experience Shop
+		
+	private int experienceShopEXPModifier = 1;
 	
-	private int experienceMultiplier = 1;
+	private int experienceShopCashUpgradeCost = 400;
+	
+	private int experienceShopEXPUpgradeCost = 400;
+
+	
 	
 	// ===================================
 
@@ -57,6 +66,21 @@ public class ExperienceModel
 	public int getStatExperienceModifier()
 	{
 		return statExperienceModifier;
+	}
+	
+	public int getExperienceShopEXPModifier()
+	{
+		return experienceShopEXPModifier;
+	}
+	
+	public int getExperienceShopCashUpgradeCost()
+	{
+		return experienceShopCashUpgradeCost;
+	}
+	
+	public int getExperienceShopEXPUpgradeCost()
+	{
+		return experienceShopEXPUpgradeCost;
 	}
 	
 	// ===================================
@@ -98,6 +122,34 @@ public class ExperienceModel
 		experienceStatPoints--;
 	}
 	
+	public void increaseExperienceShopModifier()
+	{
+		experienceShopEXPModifier++;
+	}
+	
+	public void increaseExperienceShopCashUpgradeCost()
+	{
+		experienceShopCashUpgradeCost *= 5;
+	}
+	
+	public void increaseExperienceShopEXPUpgradeCost()
+	{
+		experienceShopEXPUpgradeCost *= 3;
+	}
+	
+	public void buyEXPShopCashUpgrade()
+	{
+		currentExperience -= experienceShopCashUpgradeCost;
+		increaseExperienceShopCashUpgradeCost();
+	}
+	
+	public void buyEXPShopExperienceUpgrade() 
+	{
+		currentExperience -= experienceShopEXPUpgradeCost;
+		increaseExperienceShopModifier();
+		increaseExperienceShopEXPUpgradeCost();
+	}
+	
 	// ===================================
 	
 	// Upgrade Checker
@@ -112,6 +164,16 @@ public class ExperienceModel
 	public boolean experienceStatPointsChecker()
 	{
 		return experienceStatPoints > 0;
+	}
+	
+	public boolean experienceShopCashUpgradeCostChecker()
+	{
+		return currentExperience >= experienceShopCashUpgradeCost;
+	}
+	
+	public boolean experienceShopEXPUpgradeCostChecker()
+	{
+		return currentExperience >= experienceShopEXPUpgradeCost;
 	}
 	
 	// ===================================
@@ -133,7 +195,7 @@ public class ExperienceModel
 	
 	public void updateExperienceMultiplier()
 	{
-		experienceMultiplier = statExperienceModifier * experienceShopModifier;
+		experienceMultiplier = statExperienceModifier * experienceShopEXPModifier;
 	}
 	
 	public void updateExperienceModel()
