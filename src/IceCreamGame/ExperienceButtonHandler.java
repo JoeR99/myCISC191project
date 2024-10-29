@@ -17,13 +17,6 @@ public class ExperienceButtonHandler implements ActionHandler
 
 }
 
-// ===================================
-
-// Stat Upgrade Experience Value Handler Class
-	
-// ===================================
-
-
 	// ===================================
 
 	// Stat Upgrade Cash Value Handler Class
@@ -55,6 +48,12 @@ public class ExperienceButtonHandler implements ActionHandler
 			innerView.updateInnerUI(); // Update UI 	
 		}
 	}
+	
+	// ===================================
+
+	// Stat Upgrade Experience Value Handler Class
+		
+	// ===================================
 
 	class StatExperienceUpgradeHandler implements ActionHandler
 	{

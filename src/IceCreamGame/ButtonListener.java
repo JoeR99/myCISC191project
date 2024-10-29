@@ -2,12 +2,11 @@ package IceCreamGame;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Hashtable;
 
 public class ButtonListener implements ActionListener
 {
-	private static Map<String, ActionHandler> actionHandlers = new HashMap<>();
+	private static Hashtable<String, ActionHandler> actionHandlers = new Hashtable<>();
 	
 	public ButtonListener(String actionCommand, ActionHandler customHandler) // Game View
 	{
