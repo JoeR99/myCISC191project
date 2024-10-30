@@ -9,7 +9,9 @@ import javax.swing.JPanel;
  * Lead Author(s):
  * @author Joseph Rathbun
  *  
- * Version/date: 10/20/2024
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JPanel.html
+ *  
+ * Version/date: 10/29/2024
  * 
  * Responsibilities of class:
  * 
@@ -17,9 +19,8 @@ import javax.swing.JPanel;
  * 
  */
 
-public class CustomPanel extends JPanel
+public class CustomPanel extends JPanel // CustomPanel IS-A JPanel
 {
-	
 	/**
 	 * 
 	 */
@@ -29,7 +30,5 @@ public class CustomPanel extends JPanel
 	{
 		this.setPreferredSize(new Dimension(width, height));
 		this.setBackground(backgroundColor);
-		
-	}
-	
+	}	
 }

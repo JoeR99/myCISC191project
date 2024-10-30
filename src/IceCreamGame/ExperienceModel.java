@@ -1,8 +1,23 @@
 package IceCreamGame;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ * 
+ * References: 
+ *  
+ * Version/date: 10/29/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * The Experience Model of the Ice Cream Game that will be used in the GameModel. 
+ * Contains most data related to experience fields.
+ * Getters and Setters related to experience can be found here.
+ * 
+ */
+
 public class ExperienceModel
 {
-
 	// Experience
 	
 	private int currentExperience = 0;
@@ -30,8 +45,6 @@ public class ExperienceModel
 	
 	private int experienceShopEXPUpgradeCost = 400;
 
-	
-	
 	// ===================================
 
 	// Getter Methods

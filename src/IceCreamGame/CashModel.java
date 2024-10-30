@@ -1,5 +1,21 @@
 package IceCreamGame;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ * 
+ * References: 
+ *  
+ * Version/date: 10/29/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * The Cash Model of the Ice Cream Game that will be used in the GameModel. 
+ * Contains most data related to Cash fields.
+ * Getters and Setters related to Cash can be found here.
+ * 
+ */
+
 public class CashModel
 {
 	// Cash

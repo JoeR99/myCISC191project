@@ -1,5 +1,19 @@
 package IceCreamGame;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/event/ActionListener.html
+ * 
+ * Version/date: 10/29/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * Action Handler for buttons related to Cash (Cost and Gain)
+ * Acts as an ActionListener but is an ActionHandler
+ * 
+ */
 
 //===================================
 
@@ -7,10 +21,10 @@ package IceCreamGame;
 
 //===================================
 
-public class CashButtonHandler implements ActionHandler
+public class CashButtonHandler implements ActionHandler // CashButtonHandler IS-AN ActionHandler
 {		
-	private GameModel gameModel;
-	private InnerPanel innerView;
+	private GameModel gameModel; // CashButtonHandler HAS-A GameModel
+	private InnerPanel innerView; // CashButtonHandler HAS-AN InnerPanel
 	
 	public CashButtonHandler(GameModel model, InnerPanel innerView)
 	{
@@ -37,9 +51,9 @@ public class CashButtonHandler implements ActionHandler
 
 	class ShopCashScooperUpgradeHandler implements ActionHandler
 	{
-		private GameModel gameModel;
-		private OuterPanel outerView;
-		private InnerPanel innerView;
+		private GameModel gameModel; // ShopCashScooperUpgradeHandler HAS-A GameModel
+		private OuterPanel outerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
+		private InnerPanel innerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN InnerPanel
 
 		public ShopCashScooperUpgradeHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
 		{
@@ -68,9 +82,9 @@ public class CashButtonHandler implements ActionHandler
 	
 	class ShopCashIceCreamValueUpgradeHandler implements ActionHandler
 	{
-		private GameModel gameModel;
-		private OuterPanel outerView;
-		private InnerPanel innerView;
+		private GameModel gameModel; // ShopCashIceCreamValueUpgradeHandler HAS-A GameModel
+		private OuterPanel outerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
+		private InnerPanel innerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN InnerPanel
 		
 		public ShopCashIceCreamValueUpgradeHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
 		{

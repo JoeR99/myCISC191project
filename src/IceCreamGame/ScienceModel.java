@@ -1,8 +1,23 @@
 package IceCreamGame;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ * 
+ * References: 
+ *  
+ * Version/date: 10/29/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * The Science Model of the Ice Cream Game that will be used in the GameModel. 
+ * Contains most data related to science fields.
+ * Getters and Setters related to science can be found here.
+ * 
+ */
+
 public class ScienceModel
 {
-	
 	// Science
 	private int currentScience = 0;
 	

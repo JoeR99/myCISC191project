@@ -1,6 +1,21 @@
 package IceCreamGame;
 
-public class ExperienceButtonHandler implements ActionHandler
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/event/ActionListener.html
+ *  
+ * Version/date: 10/29/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * Action Handler for buttons related to Experience and Stat Points (Cost and Gain)
+ * Acts as an ActionListener but is an ActionHandler
+ * 
+ */
+
+public class ExperienceButtonHandler implements ActionHandler // ExperienceButtonHandler IS-AN ActionHandler
 {
 
 	public ExperienceButtonHandler()
@@ -25,8 +40,8 @@ public class ExperienceButtonHandler implements ActionHandler
 
 	class StatCashUpgradeHandler implements ActionHandler
 	{
-		private GameModel gameModel;
-		private InnerPanel innerView;
+		private GameModel gameModel; // StatCashUpgradeHandler HAS-A GameModel
+		private InnerPanel innerView; // StatCashUpgradeHandler HAS-AN InnerPanel
 		
 		public StatCashUpgradeHandler(GameModel model, InnerPanel innerView)
 		{
@@ -57,8 +72,8 @@ public class ExperienceButtonHandler implements ActionHandler
 
 	class StatExperienceUpgradeHandler implements ActionHandler
 	{
-		private GameModel gameModel;
-		private InnerPanel innerView;
+		private GameModel gameModel; // StatExperienceUpgradeHandler HAS-A GameModel
+		private InnerPanel innerView; // StatExperienceUpgradeHandler HAS-AN InnerPanel
 	
 		public StatExperienceUpgradeHandler(GameModel model, InnerPanel innerView)
 		{
@@ -82,8 +97,8 @@ public class ExperienceButtonHandler implements ActionHandler
 
 	class statScienceUpgradeButtonHandler implements ActionHandler
 	{
-		private GameModel gameModel;
-		private InnerPanel innerView;
+		private GameModel gameModel; // statScienceUpgradeButtonHandler HAS-A GameModel
+		private InnerPanel innerView; // statScienceUpgradeButtonHandler HAS-AN InnerPanel
 		
 		public statScienceUpgradeButtonHandler(GameModel model, InnerPanel innerView)
 		{
@@ -107,9 +122,9 @@ public class ExperienceButtonHandler implements ActionHandler
 	
 	class ExperienceShopCashUpgradeButtonHandler implements ActionHandler
 	{
-		private GameModel gameModel;
-		private OuterPanel outerView;
-		private InnerPanel innerView;
+		private GameModel gameModel; // ExperienceShopCashUpgradeButtonHandler HAS-A GameModel
+		private OuterPanel outerView; // ExperienceShopCashUpgradeButtonHandler HAS-AN OuterPanel
+		private InnerPanel innerView; // ExperienceShopCashUpgradeButtonHandler HAS-AN InnerPanel
 
 		
 		public ExperienceShopCashUpgradeButtonHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
@@ -117,7 +132,6 @@ public class ExperienceButtonHandler implements ActionHandler
 			this.gameModel = model;
 			this.outerView = outerView;
 			this.innerView = innerView;
-
 		}
 
 		@Override
@@ -135,9 +149,9 @@ public class ExperienceButtonHandler implements ActionHandler
 	
 	class ExperienceShopEXPUpgradeButtonHandler implements ActionHandler
 	{
-		private GameModel gameModel;
-		private OuterPanel outerView;
-		private InnerPanel innerView;
+		private GameModel gameModel; // ExperienceShopEXPUpgradeButtonHandler HAS-A GameModel
+		private OuterPanel outerView; // ExperienceShopEXPUpgradeButtonHandler HAS-AN OuterPanel
+		private InnerPanel innerView; // ExperienceShopEXPUpgradeButtonHandler HAS-AN InnerPanel
 
 		
 		public ExperienceShopEXPUpgradeButtonHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
@@ -145,7 +159,6 @@ public class ExperienceButtonHandler implements ActionHandler
 			this.gameModel = model;
 			this.outerView = outerView;
 			this.innerView = innerView;
-
 		}
 
 		@Override

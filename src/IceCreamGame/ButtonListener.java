@@ -4,9 +4,23 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Hashtable;
 
-public class ButtonListener implements ActionListener
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/event/ActionListener.html
+ *  
+ * Version/date: 10/29/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * Action Listener for ALL buttons in the Ice Cream Game. It stores actions in a Hashtable so that I can refer to that specfic action by using a command.
+ * 
+ */
+
+public class ButtonListener implements ActionListener // ButtonListener IS-AN ActionListener
 {
-	private static Hashtable<String, ActionHandler> actionHandlers = new Hashtable<>();
+	private static Hashtable<String, ActionHandler> actionHandlers = new Hashtable<>(); // ButtonListener HAS-A Hashtable
 	
 	public ButtonListener(String actionCommand, ActionHandler customHandler) // Game View
 	{
@@ -22,7 +36,6 @@ public class ButtonListener implements ActionListener
 		}
 		
 		System.out.println("HashMap Size: " + actionHandlers.size());
-
 	}
 	
 	@Override
@@ -39,5 +52,4 @@ public class ButtonListener implements ActionListener
             System.out.println("Unknown action: " + actionCommand);
         }
 	}
-	
 }

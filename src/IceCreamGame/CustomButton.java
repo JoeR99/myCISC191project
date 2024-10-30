@@ -10,19 +10,19 @@ import javax.swing.JButton;
 /**
  * Lead Author(s):
  * @author Joseph Rathbun
+ * 
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JButton.html
  *  
- * Version/date: 10/21/2024
+ * Version/date: 10/29/2024
  * 
  * Responsibilities of class:
  * 
  * Creates a Custom JButton with specific parameters that define its dimensional size, text and background color, the text of the button, and the icon of the button
  * 
- * 
  */
 
-public class CustomButton extends JButton
+public class CustomButton extends JButton // CustomButton IS-A JButton
 {
-
 	/**
 	 * 
 	 */
@@ -80,5 +80,4 @@ public class CustomButton extends JButton
 		this.setFont(textFont);
 		this.setIcon(image);
 	}
-	
 }

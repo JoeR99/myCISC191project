@@ -7,12 +7,26 @@ import java.awt.event.*;
 
 import javax.swing.Timer;
 
-public class ButtonMouseListener implements MouseListener
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/event/MouseListener.html
+ *  
+ * Version/date: 10/29/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * Mouse Listener for the Scooping Button. Currently increase cash and exp when mouse hovers over the button with this listener added to it.
+ * 
+ */
+
+public class ButtonMouseListener implements MouseListener // ButtonMouseListener IS-A MouseListener
 {
 
-	private GameModel gameModel;
+	private GameModel gameModel; // ButtonMouseListener HAS-A GameModel
 	
-	private InnerPanel innerPanel;
+	private InnerPanel innerPanel; // ButtonMouseListener HAS-AN InnerPanel
 	
 	Timer timer = new Timer(10, new ActionListener() 
 	{

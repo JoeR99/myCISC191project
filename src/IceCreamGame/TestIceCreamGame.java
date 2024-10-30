@@ -18,16 +18,16 @@ import org.junit.jupiter.api.Test;
  * Lead Author(s):
  * @author Joseph Rathbun
  *  
+ * References: https://junit.org/junit5/docs/current/user-guide/
+ *  
  * Version/date: 10/29/2024
  * 
- * Responsibilities of class:
+ * Responsibilities of class: 
  * 
  * Test All Classes for the Ice Cream Game : CustomLabel, CustomButton, CustomPanel, OuterPanel, InnerPanel, GameModel, GameView
  * 											 ButtonListener, ButtonMouseListener, ...
  * 
- * 
  */
-
 
 class TestIceCreamGame
 {

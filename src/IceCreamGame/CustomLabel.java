@@ -9,7 +9,9 @@ import javax.swing.JLabel;
  * Lead Author(s):
  * @author Joseph Rathbun
  *  
- * Version/date: 10/21/2024
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JLabel.html
+ *  
+ * Version/date: 10/29/2024
  * 
  * Responsibilities of class:
  * 
@@ -17,9 +19,8 @@ import javax.swing.JLabel;
  * 
  */
 
-public class CustomLabel extends JLabel
+public class CustomLabel extends JLabel // CustomLabel IS-A JLabel
 {
-
 	/**
 	 * 
 	 */
@@ -31,5 +32,4 @@ public class CustomLabel extends JLabel
 		this.setFont(labelTextFont);
 		this.setForeground(labelTextColor);	
 	}
-	
 }

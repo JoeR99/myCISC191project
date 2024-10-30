@@ -20,7 +20,9 @@ import javax.swing.Timer;
  * Lead Author(s):
  * @author Joseph Rathbun
  *  
- * Version/date: 10/23/2024
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JPanel.html
+ *  
+ * Version/date: 10/29/2024
  * 
  * Responsibilities of class:
  * 
@@ -28,13 +30,11 @@ import javax.swing.Timer;
  * 
  */
 
-public class InnerPanel extends JPanel
+public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 {
-
 	/**
 	 * 
 	 */
-	
 	private static final long serialVersionUID = 3L;
 
 	private GameModel gameModel;

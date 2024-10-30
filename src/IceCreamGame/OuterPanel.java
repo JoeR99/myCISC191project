@@ -6,15 +6,15 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
 
 /**
  * Lead Author(s):
  * @author Joseph Rathbun
+ * 
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JPanel.html
  *  
- * Version/date: 10/20/2024
+ * Version/date: 10/29/2024
  * 
  * Responsibilities of class:
  * 
@@ -22,9 +22,8 @@ import javax.swing.SwingConstants;
  * 
  */
 
-public class OuterPanel extends JPanel
+public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 {
-
 	/**
 	 * 
 	 */
@@ -40,7 +39,6 @@ public class OuterPanel extends JPanel
 	
 	private Font defaultSerif = new Font("Serif", Font.BOLD, 16);
 	private Font italicSerif_12 = new Font("Serif", Font.ITALIC, 12); // For Shop Text
-
 	
 	private CustomPanel eastPanel = new CustomPanel(WEST_AND_EAST_SIDE, 0, Color.ORANGE);
 		
@@ -161,16 +159,12 @@ public class OuterPanel extends JPanel
 //		JLabel researchShopLabel = new JLabel("RESEARCH SHOP");
 //		researchShopLabel.setFont(new Font("Serif", Font.ITALIC, 12)); researchShopLabel.setForeground(Color.BLACK);
 //		researchShopPanel.add(researchShopLabel);
-
-		
 		
 		// Add Panels to CardLayout
 		eastPanel.add(shopIceCreamPanel, "CASH_SHOP_PAGE"); // Add Shop Page to East Panel's CardLayout
 		eastPanel.add(expShopPanel, "EXP_SHOP_PAGE"); // Add EXP Page to East Panel's CardLayout
 		eastPanel.add(scienceShopPanel, "SCIENCE_SHOP_PAGE"); // Add Research Page to East Panel's CardLayout
-		eastPanel.add(researchShopPanel, "RESEARCH_SHOP_PAGE"); // Add Research Page to East Panel's CardLayout
-		
-		
+		eastPanel.add(researchShopPanel, "RESEARCH_SHOP_PAGE"); // Add Research Page to East Panel's CardLayout	
 		
 		cardLayout.show(eastPanel,"SHOP_PAGE"); // Set Starting Page to SHOP
 
@@ -178,9 +172,10 @@ public class OuterPanel extends JPanel
 
 		// SOUTHERN PANEL ********************************************************************************************************************************* //
 
+		CustomLabel creatorLabel = new CustomLabel("Programmed By: Joseph Rathbun", defaultSerif, Color.WHITE);
+		southPanel.add(creatorLabel);
 		southPanel.setToolTipText("Programmed By: Joseph Rathbun");		
 		this.add(southPanel, BorderLayout.SOUTH);
-
 		
 	}
 	
