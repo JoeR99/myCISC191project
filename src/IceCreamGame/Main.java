@@ -23,5 +23,4 @@ public class Main
 		new GameView(new GameModel());
 
 	}
-
 }

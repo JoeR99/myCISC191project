@@ -120,7 +120,6 @@ class TestIceCreamGame
 		assertTrue(testInnerPanel instanceof JPanel);
 	}
 	
-	
 	@Test
 	void testGameModel()
 	{
@@ -147,6 +146,24 @@ class TestIceCreamGame
 		assertTrue(testModel.getScienceModel() instanceof ScienceModel);
 		assertTrue(joesModel.getScienceModel() instanceof ScienceModel);
 		assertNotEquals(testModel.getScienceModel(), joesModel.getScienceModel());	
+	}
+	
+	@Test
+	void testCashModel()
+	{
+		//TODO
+	}
+	
+	@Test
+	void testExperienceModel()
+	{
+		//TODO
+	}
+	
+	@Test
+	void testScienceModel()
+	{
+		//TODO
 	}
 	
 	@Test

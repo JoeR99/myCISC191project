@@ -179,6 +179,27 @@ Week 4
 -Submit final code to Canvas.
 -Add videos to the project page.
 
+Week 1 Update
+    My current game is in a solid state and has many features that I wanted to implement by this point. 
+    I got much of the “easy” stuff done, such as the paneling and buttons, as well as any action related to them. 
+    I have a few ideas of how to improve the quality of the game but they are not too important at this moment. 
+    I am finding that the code I currently have is getting a bit long and it takes a few seconds just to find the place in my class where I need to add the button or label or whatever. 
+    Understandably I might have to put up with this and continue forward.
+
+Week 2 Update
+	I made an important decision to write my code in a new way. 
+    I decided to create a custom class for labels, buttons, and panels. 
+    It has helped to reduce my code significantly but I had to sacrifice the ability to read my classes. 
+    The project is currently small enough to manage without any real issues, especially compared to the amount of time spent finding where to place code in my previous version. 
+    Even with proper commenting I found it to be challenging. I also decided to separate my model into many smaller models that I designated to contain the information pertinent to its theme. 
+    That is, I made separate models for cash, experience, and science. This was another way to reduce the size of my model class while maintaining readability and speed. 
+    I also created an action handler interface as a middleman for my action listeners, however I’m starting to think about how it works and find it to be a bit redundant. 
+    I’m currently using nested classes to avoid boilerplate with my action listeners anyways so… 
+    I also created a test class that tests most of my classes except for certain ones like my sub-models. 
+    I intend on adding tests for those in the next week when I can. 
+    Hopefully it isn’t too hard to read my code in its current state. 
+    I believe it should be easier than my previous version and allows me to think about each section without much contemplation. 
+    I want to add a few more features like saving and loading, but I am currently on schedule with my timeline and feel quite good about it.
 
 	
 
