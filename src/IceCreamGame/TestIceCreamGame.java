@@ -54,17 +54,14 @@ class TestIceCreamGame
 	void testCustomButton()
 	{
 		ImageIcon testIcon = new ImageIcon("images/scooper-32");
-		// CustomButton Parameters : int width, int height, Color backgroundColor, String actionCommand, String buttonText, Color textColor, Font textFont, ImageIcon image
-		CustomButton testButton = new CustomButton(99, 11, Color.BLACK, "ACTION", "!", Color.WHITE, new Font("SansSerif", Font.ITALIC, 12), testIcon);
+		// CustomButton Parameters : int width, int height, Color backgroundColor, String buttonText, Color textColor, Font textFont, ImageIcon image
+		CustomButton testButton = new CustomButton(99, 11, Color.BLACK, "!", Color.WHITE, new Font("SansSerif", Font.ITALIC, 12), testIcon);
 
 		// Test CustomButton Dimension Parameters
 		assertEquals(new Dimension(99, 11), testButton.getPreferredSize());
 		
 		// Test CustomButton Background Color Parameters
 		assertEquals(Color.BLACK, testButton.getBackground());
-		
-		// Test CustomButton ActionCommand Parameters
-		assertEquals("ACTION", testButton.getActionCommand());
 		
 		// Test CustomButton Set Text Parameters
 		assertEquals("!", testButton.getText());
@@ -178,7 +175,13 @@ class TestIceCreamGame
 	}
 	
 	@Test
-	void testButtonListener()
+	void testCashButtonListener()
+	{
+		
+	}
+	
+	@Test
+	void testExperienceButtonListener()
 	{
 		
 	}

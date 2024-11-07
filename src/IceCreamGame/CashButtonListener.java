@@ -1,5 +1,8 @@
 package IceCreamGame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 /**
  * Lead Author(s):
  * @author Joseph Rathbun
@@ -21,19 +24,19 @@ package IceCreamGame;
 
 //===================================
 
-public class CashButtonHandler implements ActionHandler // CashButtonHandler IS-AN ActionHandler
+public class CashButtonListener implements ActionListener // CashButtonHandler IS-AN ActionHandler
 {		
 	private GameModel gameModel; // CashButtonHandler HAS-A GameModel
 	private InnerPanel innerView; // CashButtonHandler HAS-AN InnerPanel
 	
-	public CashButtonHandler(GameModel model, InnerPanel innerView)
+	public CashButtonListener(GameModel model, InnerPanel innerView)
 	{
 		this.gameModel = model;
 		this.innerView = innerView;
 	}
 	
 	@Override
-	public void handleAction()
+	public void actionPerformed(ActionEvent e)
 	{
 		System.out.println("----- HAPPY SCOOP -----");
 		gameModel.getCashModel().increaseCurrentCash();
@@ -49,7 +52,7 @@ public class CashButtonHandler implements ActionHandler // CashButtonHandler IS-
 
 	//===================================
 
-	class ShopCashScooperUpgradeHandler implements ActionHandler
+	class ShopCashScooperUpgradeHandler implements ActionListener
 	{
 		private GameModel gameModel; // ShopCashScooperUpgradeHandler HAS-A GameModel
 		private OuterPanel outerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
@@ -63,7 +66,7 @@ public class CashButtonHandler implements ActionHandler // CashButtonHandler IS-
 		}
 		
 		@Override
-		public void handleAction()
+		public void actionPerformed(ActionEvent e)
 		{
 			if ( gameModel.getCashModel().scooperUpgradeChecker() == true )
 			
@@ -80,7 +83,7 @@ public class CashButtonHandler implements ActionHandler // CashButtonHandler IS-
 	
 	// ===================================
 	
-	class ShopCashIceCreamValueUpgradeHandler implements ActionHandler
+	class ShopCashIceCreamValueUpgradeHandler implements ActionListener
 	{
 		private GameModel gameModel; // ShopCashIceCreamValueUpgradeHandler HAS-A GameModel
 		private OuterPanel outerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
@@ -94,7 +97,7 @@ public class CashButtonHandler implements ActionHandler // CashButtonHandler IS-
 		}
 		
 		@Override
-		public void handleAction()
+		public void actionPerformed(ActionEvent e)
 		{
 			if ( gameModel.getCashModel().iceCreamValueUpgradeChecker() == true )
 			{

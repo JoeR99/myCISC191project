@@ -44,15 +44,15 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		
 	// Cash Shop Labels and Buttons
 	private CustomLabel scooperLevelLabel = new CustomLabel("Scooper Level: 1", italicSerif_12, Color.BLACK);
-	private CustomButton scooperShopUpgradeButton = new CustomButton(140, 50, Color.YELLOW, "ShopCashScooperUpgrade", "$" + 5, Color.BLACK, italicSerif_12);
+	private CustomButton scooperShopUpgradeButton = new CustomButton(140, 50, Color.YELLOW, "$" + 5, Color.BLACK, italicSerif_12);
 	private CustomLabel iceCreamValueLabel = new CustomLabel("Ice Cream Value: 1", italicSerif_12, Color.BLACK);
-	private CustomButton iceCreamValueShopUpgradeButton = new CustomButton(140, 50, Color.YELLOW, "ShopCashIceCreamValueUpgrade", "$" + 20, Color.BLACK, italicSerif_12);
+	private CustomButton iceCreamValueShopUpgradeButton = new CustomButton(140, 50, Color.YELLOW, "$" + 20, Color.BLACK, italicSerif_12);
 
 	// Experience Shop Labels and Buttons
 	private CustomLabel expShopCashUpgradeLabel = new CustomLabel("Cash  x1", italicSerif_12, Color.WHITE);
-	private CustomButton expShopCashUpgradeButton = new CustomButton(140, 50, Color.WHITE, "EXPShopCashUpgrade", "EXP 400", Color.BLACK, italicSerif_12);
+	private CustomButton expShopCashUpgradeButton = new CustomButton(140, 50, Color.WHITE, "EXP 400", Color.BLACK, italicSerif_12);
 	private CustomLabel expGainShopLabel = new CustomLabel("EXP  x1", italicSerif_12, Color.WHITE );
-	private CustomButton expShopExperienceGainShopButton = new CustomButton(140, 50, Color.WHITE, "EXPShopExperienceUpgrade", "EXP 400", Color.BLACK, italicSerif_12);
+	private CustomButton expShopExperienceGainShopButton = new CustomButton(140, 50, Color.WHITE, "EXP 400", Color.BLACK, italicSerif_12);
 	
 	public OuterPanel(GameModel model)
 	{
@@ -105,7 +105,7 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		shopIceCreamPanel.add(upgradeScooperLabel);
 		
 		// Scooper Upgrade Button
-		scooperShopUpgradeButton.addActionListener(new ButtonListener("ShopCashScooperUpgrade", new ShopCashScooperUpgradeHandler(gameModel, this, innerPanel)));
+		scooperShopUpgradeButton.addActionListener(new ShopCashScooperUpgradeHandler(gameModel, this, innerPanel));
 		shopIceCreamPanel.add(scooperShopUpgradeButton);
 		
 		// Ice Cream Value Upgrade Label
@@ -113,7 +113,7 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		shopIceCreamPanel.add(upgradeIceCreamValueLabel);
 		
 		// Ice Cream Value Upgrade Button
-		iceCreamValueShopUpgradeButton.addActionListener(new ButtonListener("ShopCashIceCreamValueUpgrade", new ShopCashIceCreamValueUpgradeHandler(model, this, innerPanel)));
+		iceCreamValueShopUpgradeButton.addActionListener(new ShopCashIceCreamValueUpgradeHandler(model, this, innerPanel));
 		shopIceCreamPanel.add(iceCreamValueShopUpgradeButton);
 	
 		// ===================================
@@ -130,13 +130,13 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		
 		// EXP Shop Gain CASH
 		expShopPanel.add(expShopCashUpgradeLabel);
-		expShopCashUpgradeButton.addActionListener(new ButtonListener("EXPShopCashUpgrade", new ExperienceShopCashUpgradeButtonHandler(gameModel, this, innerPanel)));
+		expShopCashUpgradeButton.addActionListener(new ExperienceShopCashUpgradeButtonHandler(gameModel, this, innerPanel));
 		expShopPanel.add(expShopCashUpgradeButton);
 
 		
 		// EXP Shop Gain EXP
 		expShopPanel.add(expGainShopLabel);
-		expShopExperienceGainShopButton.addActionListener(new ButtonListener("EXPShopExperienceUpgrade", new ExperienceShopEXPUpgradeButtonHandler(gameModel, this, innerPanel)));
+		expShopExperienceGainShopButton.addActionListener(new ExperienceShopEXPUpgradeButtonHandler(gameModel, this, innerPanel));
 		expShopPanel.add(expShopExperienceGainShopButton);
 		
 		// ===================================

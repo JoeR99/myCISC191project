@@ -3,6 +3,7 @@ package IceCreamGame;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -13,7 +14,7 @@ import javax.swing.JButton;
  * 
  * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JButton.html
  *  
- * Version/date: 10/29/2024
+ * Version/date: 11/06/2024
  * 
  * Responsibilities of class:
  * 
@@ -40,41 +41,21 @@ public class CustomButton extends JButton // CustomButton IS-A JButton
 		this.setBackground(backgroundColor);
 	}
 	
-	public CustomButton(int width, int height, Color backgroundColor, String actionCommand)
+	public CustomButton(int width, int height, Color backgroundColor, String buttonText, Color textColor, Font textFont)
 	{
 		this();
 		this.setPreferredSize(new Dimension (width, height));
 		this.setBackground(backgroundColor);
-		this.setActionCommand(actionCommand);
-	}
-	
-	public CustomButton(int width, int height, Color backgroundColor, String actionCommand, String buttonText, Color textColor)
-	{
-		this();
-		this.setPreferredSize(new Dimension (width, height));
-		this.setBackground(backgroundColor);
-		this.setActionCommand(actionCommand);
-		this.setText(buttonText);
-		this.setForeground(textColor);
-	}
-	
-	public CustomButton(int width, int height, Color backgroundColor, String actionCommand, String buttonText, Color textColor, Font textFont)
-	{
-		this();
-		this.setPreferredSize(new Dimension (width, height));
-		this.setBackground(backgroundColor);;
-		this.setActionCommand(actionCommand);
 		this.setText(buttonText);
 		this.setForeground(textColor);
 		this.setFont(textFont);
 	}
 	
-	public CustomButton(int width, int height, Color backgroundColor, String actionCommand, String buttonText, Color textColor, Font textFont, ImageIcon image)
+	public CustomButton(int width, int height, Color backgroundColor, String buttonText, Color textColor, Font textFont, ImageIcon image)
 	{
 		this();
 		this.setPreferredSize(new Dimension (width, height));
 		this.setBackground(backgroundColor);;
-		this.setActionCommand(actionCommand);
 		this.setText(buttonText);
 		this.setForeground(textColor);
 		this.setFont(textFont);

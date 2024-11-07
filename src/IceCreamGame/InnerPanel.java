@@ -57,7 +57,7 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 	private Cursor scooperCursor = toolkit.createCustomCursor(scooperCursorIcon, new Point(0, 0), "Custom Cursor");
 	
 	// Main Button
-	private CustomButton scoopingButton = new CustomButton(120, 50, Color.PINK,"ScoopingButton", "1x", Color.BLACK, boldSerif_12, scooperIcon);
+	private CustomButton scoopingButton = new CustomButton(120, 50, Color.PINK, "1x", Color.BLACK, boldSerif_12, scooperIcon);
 	
 	// EXP Slider
 	private CustomLabel experienceSliderLabel = new CustomLabel("Level: 1", boldSerif_12, Color.BLACK);
@@ -74,9 +74,9 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 	private Timer scienceTimer;
 	
 	// Stat Upgrade Buttons
-	private CustomButton statCashUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatCashUpgrade", "CASH x1", Color.BLACK, boldSerif_12);
-	private CustomButton statExperienceUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatExperienceUpgrade", "EXP x1", Color.BLACK, boldSerif_12);
-	private CustomButton statScienceUpgradeButton = new CustomButton(100, 50, Color.GREEN, "StatScienceUpgrade", "SCI x1", Color.BLACK, boldSerif_12);
+	private CustomButton statCashUpgradeButton = new CustomButton(100, 50, Color.GREEN, "CASH x1", Color.BLACK, boldSerif_12);
+	private CustomButton statExperienceUpgradeButton = new CustomButton(100, 50, Color.GREEN, "EXP x1", Color.BLACK, boldSerif_12);
+	private CustomButton statScienceUpgradeButton = new CustomButton(100, 50, Color.GREEN, "SCI x1", Color.BLACK, boldSerif_12);
 	
 	private CustomLabel currentScienceLabel = new CustomLabel("0", boldSerif_12, Color.BLACK);
 	private CustomLabel maximumScienceLabel = new CustomLabel("/ 100", boldSerif_12, Color.BLACK);
@@ -125,13 +125,13 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		leftPanel.add(statPointsLabel); // STAT POINTS
 		
 		// Experience Buttons
-		statCashUpgradeButton.addActionListener(new ButtonListener("StatCashUpgrade", new StatCashUpgradeHandler(gameModel, this)));
+		statCashUpgradeButton.addActionListener(new StatCashUpgradeHandler(gameModel, this));
 		leftPanel.add(statCashUpgradeButton);
 		
-		statExperienceUpgradeButton.addActionListener(new ButtonListener("StatExperienceUpgrade", new StatExperienceUpgradeHandler(gameModel, this)));
+		statExperienceUpgradeButton.addActionListener(new StatExperienceUpgradeHandler(gameModel, this));
 		leftPanel.add(statExperienceUpgradeButton);
 		
-		statScienceUpgradeButton.addActionListener(new ButtonListener("StatScienceUpgrade", new statScienceUpgradeButtonHandler(gameModel, this)));
+		statScienceUpgradeButton.addActionListener(new statScienceUpgradeButtonHandler(gameModel, this));
 		leftPanel.add(statScienceUpgradeButton);
 		
 		// ===================================
@@ -177,7 +177,7 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		// MIDDLE PANEL ********************************************************************************************************************************* //
 
 		scoopingButton.setCursor(scooperCursor);
-		scoopingButton.addActionListener(new ButtonListener("ScoopingButton", new CashButtonHandler(gameModel, this)));
+//		scoopingButton.addActionListener(new ButtonListener("ScoopingButton", new CashButtonListener(gameModel, this)));
 		scoopingButton.addMouseListener(new ButtonMouseListener(model, this));
 		middlePanel.add(scoopingButton);
 		
@@ -192,10 +192,10 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		// ===================================
 		
 		// SHOP BUTTONS / LISTENERS
-		CustomButton switchToCashShopButton = new CustomButton(70, 30, Color.CYAN,"SHOP_PAGE", "SHOP", Color.BLACK, boldSerif_12);
-		CustomButton switchToExperienceShopButton = new CustomButton(70, 30, Color.BLUE,"SHOP_PAGE", "EXP", Color.WHITE, boldSerif_12);
-		CustomButton switchToScienceShopButton = new CustomButton(70, 30, Color.GREEN,"SHOP_PAGE", "SCI", Color.YELLOW, boldSerif_12);
-		CustomButton switchToResearchShopButton = new CustomButton(70, 30, Color.MAGENTA,"SHOP_PAGE", "RES", Color.BLACK, new Font("Serif", Font.BOLD, 12));
+		CustomButton switchToCashShopButton = new CustomButton(70, 30, Color.CYAN,"SHOP", Color.BLACK, boldSerif_12);
+		CustomButton switchToExperienceShopButton = new CustomButton(70, 30, Color.BLUE, "EXP", Color.WHITE, boldSerif_12);
+		CustomButton switchToScienceShopButton = new CustomButton(70, 30, Color.GREEN, "SCI", Color.YELLOW, boldSerif_12);
+		CustomButton switchToResearchShopButton = new CustomButton(70, 30, Color.MAGENTA, "RES", Color.BLACK, new Font("Serif", Font.BOLD, 12));
 
 		switchToCashShopButton.addActionListener(e -> outerPanel.switchPanel("CASH_SHOP_PAGE")); // Add Action Listener to Swap Panels in Outer Panel
 		switchToExperienceShopButton.addActionListener(e -> outerPanel.switchPanel("EXP_SHOP_PAGE"));
