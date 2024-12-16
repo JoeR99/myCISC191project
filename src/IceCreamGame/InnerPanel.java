@@ -22,7 +22,7 @@ import javax.swing.Timer;
  *  
  * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JPanel.html
  *  
- * Version/date: 10/29/2024
+ * Version/date: 12/16/2024
  * 
  * Responsibilities of class:
  * 
@@ -32,21 +32,13 @@ import javax.swing.Timer;
 
 public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 {
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 3L;
-
 	private GameModel gameModel;
 	
-	private final int UPPER_SIDE = 50;
+	private final int UPPER_SIDE = 60;
 	private final int LEFT_AND_RIGHT_SIDE = 120;
 	private final int LOWER_SIDE = 30;
 	
 	private Font boldSerif_12 = new Font("Serif", Font.BOLD, 12);
-	
-	// Cash
-	private CustomLabel cashLabel = new CustomLabel("Cash: " + 0, new Font("Serif", Font.BOLD, 20), Color.BLACK);
 	
 	// Icons
 	private ImageIcon scooperIcon = new ImageIcon("images/yellow-icecream-cone-32.png");
@@ -66,7 +58,7 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 	private CustomLabel currentExperienceLabel = new CustomLabel("0", boldSerif_12, Color.BLACK);
 	private CustomLabel maximumExperienceLabel = new CustomLabel("/ 100", boldSerif_12, Color.BLACK);
 
-	
+		// Stats
 	private CustomLabel statPointsLabel = new CustomLabel("Stat Points: 1", boldSerif_12, Color.BLACK);
 	
 	// Science Slider
@@ -80,34 +72,31 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 	
 	private CustomLabel currentScienceLabel = new CustomLabel("0", boldSerif_12, Color.BLACK);
 	private CustomLabel maximumScienceLabel = new CustomLabel("/ 100", boldSerif_12, Color.BLACK);
-
-	
-
 		
 	public InnerPanel(GameModel model, OuterPanel outerPanel)
-	{
-		
-		
+	{	
 		this.gameModel = model;
 		
 		this.setLayout(new BorderLayout());
 		
 		CustomPanel upperPanel = new CustomPanel(0, UPPER_SIDE, Color.YELLOW);
 		CustomPanel leftPanel = new CustomPanel(LEFT_AND_RIGHT_SIDE, 0, Color.YELLOW);
-		JPanel middlePanel = new JPanel(); middlePanel.setBackground(Color.WHITE);
 		CustomPanel rightPanel = new CustomPanel(LEFT_AND_RIGHT_SIDE, 0, Color.YELLOW);
 		CustomPanel lowerPanel = new CustomPanel(0, LOWER_SIDE, Color.YELLOW);
 		
+		FallingIceCream fallingIceCreamPanel = new FallingIceCream();
+		
 		// UPPER PANEL ********************************************************************************************************************************* //
 		
-		upperPanel.add(cashLabel);
+		scoopingButton.setCursor(scooperCursor);
+		scoopingButton.addMouseListener(new ButtonMouseListener(model, this, outerPanel));
+		upperPanel.add(scoopingButton);
 		
-		this.add(upperPanel, BorderLayout.NORTH); // Add Sub Panel to Inner Panel
-		
+		this.add(upperPanel, BorderLayout.NORTH); // Add Sub Panel to Inner Panel	
+	
 		// LEFT PANEL ********************************************************************************************************************************** //
 		leftPanel.add(experienceSliderLabel); // EXP SLIDER
-		
-		
+				
 		// ===================================
 
 		// Experience Slider and Buttons
@@ -128,10 +117,10 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		statCashUpgradeButton.addActionListener(new StatCashUpgradeHandler(gameModel, this));
 		leftPanel.add(statCashUpgradeButton);
 		
-		statExperienceUpgradeButton.addActionListener(new StatExperienceUpgradeHandler(gameModel, this));
+		statExperienceUpgradeButton.addActionListener(new StatExperienceUpgradeHandler(gameModel, this, outerPanel));
 		leftPanel.add(statExperienceUpgradeButton);
 		
-		statScienceUpgradeButton.addActionListener(new statScienceUpgradeButtonHandler(gameModel, this));
+		statScienceUpgradeButton.addActionListener(new statScienceUpgradeButtonHandler(gameModel, this, outerPanel));
 		leftPanel.add(statScienceUpgradeButton);
 		
 		// ===================================
@@ -175,13 +164,9 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		this.add(leftPanel, BorderLayout.WEST); // Add Sub Panel to Inner Panel
 
 		// MIDDLE PANEL ********************************************************************************************************************************* //
-
-		scoopingButton.setCursor(scooperCursor);
-//		scoopingButton.addActionListener(new ButtonListener("ScoopingButton", new CashButtonListener(gameModel, this)));
-		scoopingButton.addMouseListener(new ButtonMouseListener(model, this));
-		middlePanel.add(scoopingButton);
 		
-		this.add(middlePanel, BorderLayout.CENTER); // Add Sub Panel to Inner Panel
+//		this.add(middlePanel, BorderLayout.CENTER); // Add Sub Panel to Inner Panel
+		this.add(fallingIceCreamPanel, BorderLayout.CENTER);
 
 		// RIGHT PANEL ********************************************************************************************************************************* //
 
@@ -220,9 +205,6 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		ExperienceModel expModel = gameModel.getExperienceModel();
 		ScienceModel scienceModel = gameModel.getScienceModel();
 		
-		// Cash
-		cashLabel.setText("Cash: $" + cashModel.getCurrentCash());
-		
 		// Main Button
 		scoopingButton.setText(cashModel.getCashMultiplier() + "x");
 		
@@ -234,7 +216,6 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		currentExperienceLabel.setText("" + expModel.getCurrentExperience());
 		maximumExperienceLabel.setText("/ " + expModel.getExperienceLevelUpCost());
 
-		
 		// Stat Points Label and Buttons
 		statPointsLabel.setText("  Stat Points: " + expModel.getExperienceStatPoints());
 		statCashUpgradeButton.setText("CASH x" + expModel.getStatCashModifier()); // Stat Cash
@@ -250,5 +231,10 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		maximumScienceLabel.setText("/ " + maximumScience);
 		
 	}
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3L;
 	
 }

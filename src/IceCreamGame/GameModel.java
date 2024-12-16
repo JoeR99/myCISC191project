@@ -22,12 +22,14 @@ public class GameModel
 	private CashModel cashModel; // GameModel HAS-A CashModel
 	private ExperienceModel experienceModel; // GameModel HAS-AN ExperienceModel
 	private ScienceModel scienceModel; // GameModel HAS-A ScienceModel
+	private ResearchModel researchModel; // GameModel HAS-A ResearchModel
 
 	public GameModel()
 	{
 		this.cashModel = new CashModel();
 		this.experienceModel = new ExperienceModel();
 		this.scienceModel = new ScienceModel();
+		this.researchModel = new ResearchModel();
 	}
 	
 	// ===================================
@@ -51,6 +53,11 @@ public class GameModel
 		return scienceModel;
 	}
 	
+	public ResearchModel getResearchModel()
+	{
+		return researchModel;
+	}
+	
 	// ===================================
 	
 	// Updates
@@ -62,6 +69,7 @@ public class GameModel
 		cashModel.updateCashModel();
 		experienceModel.updateExperienceModel();
 		scienceModel.updateScienceModel();
+		researchModel.updateResearchModel();
 	}
 	
 }

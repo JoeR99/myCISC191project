@@ -44,6 +44,9 @@ public class ExperienceModel
 	private int experienceShopCashUpgradeCost = 400;
 	
 	private int experienceShopEXPUpgradeCost = 400;
+	
+	// Flavor
+	private int flavorExpModifier = 1;
 
 	// ===================================
 
@@ -76,6 +79,11 @@ public class ExperienceModel
 		return statCashModifier;
 	}
 	
+	public int getExperienceMultiplier()
+	{
+		return experienceMultiplier;
+	}
+	
 	public int getStatExperienceModifier()
 	{
 		return statExperienceModifier;
@@ -94,6 +102,11 @@ public class ExperienceModel
 	public int getExperienceShopEXPUpgradeCost()
 	{
 		return experienceShopEXPUpgradeCost;
+	}
+	
+	public int getFlavorExpModifier()
+	{
+		return flavorExpModifier;
 	}
 	
 	// ===================================
@@ -163,6 +176,11 @@ public class ExperienceModel
 		increaseExperienceShopEXPUpgradeCost();
 	}
 	
+	public void setFlavorExpModifier(int newModifier)
+	{
+		flavorExpModifier = newModifier;
+	}
+	
 	// ===================================
 	
 	// Upgrade Checker
@@ -208,7 +226,7 @@ public class ExperienceModel
 	
 	public void updateExperienceMultiplier()
 	{
-		experienceMultiplier = statExperienceModifier * experienceShopEXPModifier;
+		experienceMultiplier = statExperienceModifier * experienceShopEXPModifier * flavorExpModifier;
 	}
 	
 	public void updateExperienceModel()

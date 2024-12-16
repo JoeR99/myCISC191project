@@ -76,12 +76,14 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 	class StatExperienceUpgradeHandler implements ActionListener
 	{
 		private GameModel gameModel; // StatExperienceUpgradeHandler HAS-A GameModel
-		private InnerPanel innerView; // StatExperienceUpgradeHandler HAS-AN InnerPanel
+		private InnerPanel innerPanel; // StatExperienceUpgradeHandler HAS-AN InnerPanel
+		private OuterPanel outerPanel; // StatExperienceUpgradeHandler HAS-AN OuterPanel
 	
-		public StatExperienceUpgradeHandler(GameModel model, InnerPanel innerView)
+		public StatExperienceUpgradeHandler(GameModel model, InnerPanel innerView, OuterPanel outerView)
 		{
 			this.gameModel = model;
-			this.innerView = innerView;
+			this.innerPanel = innerView;
+			this.outerPanel = outerView;
 		}
 
 		@Override
@@ -94,19 +96,23 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 				
 				gameModel.getExperienceModel().updateExperienceMultiplier();
 			}
-			innerView.updateInnerUI(); // Update UI 	
+			innerPanel.updateInnerUI(); // Update UI
+			outerPanel.updateOuterPanelUI(innerPanel);
 		}
 	}
 
 	class statScienceUpgradeButtonHandler implements ActionListener
 	{
 		private GameModel gameModel; // statScienceUpgradeButtonHandler HAS-A GameModel
-		private InnerPanel innerView; // statScienceUpgradeButtonHandler HAS-AN InnerPanel
+		private InnerPanel innerPanel; // statScienceUpgradeButtonHandler HAS-AN InnerPanel
+		private OuterPanel outerPanel; // statScienceUpgradeButtonHandler HAS-AN OuterPanel
+
 		
-		public statScienceUpgradeButtonHandler(GameModel model, InnerPanel innerView)
+		public statScienceUpgradeButtonHandler(GameModel model, InnerPanel innerView, OuterPanel outerView)
 		{
 			this.gameModel = model;
-			this.innerView = innerView;
+			this.innerPanel = innerView;
+			this.outerPanel = outerView;
 		}
 
 		@Override
@@ -119,22 +125,23 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 				
 				gameModel.getScienceModel().updateScienceGainMultilier();
 			}
-			innerView.updateInnerUI(); // Update UI 	
+			innerPanel.updateInnerUI(); // Update UI 	
+			outerPanel.updateOuterPanelUI(innerPanel);
 		}
 	}
 	
 	class ExperienceShopCashUpgradeButtonHandler implements ActionListener
 	{
 		private GameModel gameModel; // ExperienceShopCashUpgradeButtonHandler HAS-A GameModel
-		private OuterPanel outerView; // ExperienceShopCashUpgradeButtonHandler HAS-AN OuterPanel
-		private InnerPanel innerView; // ExperienceShopCashUpgradeButtonHandler HAS-AN InnerPanel
+		private OuterPanel outerPanel; // ExperienceShopCashUpgradeButtonHandler HAS-AN OuterPanel
+		private InnerPanel innerPanel; // ExperienceShopCashUpgradeButtonHandler HAS-AN InnerPanel
 
 		
 		public ExperienceShopCashUpgradeButtonHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
 		{
 			this.gameModel = model;
-			this.outerView = outerView;
-			this.innerView = innerView;
+			this.outerPanel = outerView;
+			this.innerPanel = innerView;
 		}
 
 		@Override
@@ -146,22 +153,22 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 				gameModel.getCashModel().increaseExperienceShopCashModifier(); // Increase Cash Modifier
 				gameModel.getCashModel().updateCashMultiplier();
 			}	
-			outerView.updateOuterPanelUI(innerView);
+			outerPanel.updateOuterPanelUI(innerPanel);
 		}
 	}
 	
 	class ExperienceShopEXPUpgradeButtonHandler implements ActionListener
 	{
 		private GameModel gameModel; // ExperienceShopEXPUpgradeButtonHandler HAS-A GameModel
-		private OuterPanel outerView; // ExperienceShopEXPUpgradeButtonHandler HAS-AN OuterPanel
-		private InnerPanel innerView; // ExperienceShopEXPUpgradeButtonHandler HAS-AN InnerPanel
+		private OuterPanel outerPanel; // ExperienceShopEXPUpgradeButtonHandler HAS-AN OuterPanel
+		private InnerPanel innerPanel; // ExperienceShopEXPUpgradeButtonHandler HAS-AN InnerPanel
 
 		
 		public ExperienceShopEXPUpgradeButtonHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
 		{
 			this.gameModel = model;
-			this.outerView = outerView;
-			this.innerView = innerView;
+			this.outerPanel = outerView;
+			this.innerPanel = innerView;
 		}
 
 		@Override
@@ -172,6 +179,6 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 				gameModel.getExperienceModel().buyEXPShopExperienceUpgrade(); // Increase Cost to Upgrade and subtract EXP. Increase EXP Modifier
 				gameModel.getExperienceModel().updateExperienceMultiplier();
 			}	
-			outerView.updateOuterPanelUI(innerView);
+			outerPanel.updateOuterPanelUI(innerPanel);
 		}
 	}

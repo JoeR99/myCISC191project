@@ -33,6 +33,9 @@ public class ScienceModel
 	
 	private int scienceExperienceUpgradeCost = 50;
 	
+	// Flavor
+	private int flavorSciModifier = 1;
+	
 	// ===================================
 
 	// Getter Methods
@@ -67,6 +70,11 @@ public class ScienceModel
 	public int getStatScienceModifier()
 	{
 		return statScienceModifier;
+	}
+	
+	public int getFlavorSciModifier()
+	{
+		return flavorSciModifier;
 	}
 	
 	// ===================================
@@ -108,6 +116,11 @@ public class ScienceModel
 	public void setScienceToMaximum()
 	{
 		currentScience = maximumScience;
+	}
+	
+	public void setFlavorSciModifier(int newModifier)
+	{
+		flavorSciModifier = newModifier;
 	}
 	
 	// ===================================
@@ -156,6 +169,6 @@ public class ScienceModel
 	
 	public void updateScienceGainMultilier()
 	{
-		scienceGainMultiplier = scienceGainModifier * statScienceModifier;
+		scienceGainMultiplier = scienceGainModifier * statScienceModifier * flavorSciModifier;
 	}
 }

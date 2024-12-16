@@ -1,6 +1,7 @@
 package IceCreamGame;
 
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.event.ActionListener;
@@ -60,5 +61,17 @@ public class CustomButton extends JButton // CustomButton IS-A JButton
 		this.setForeground(textColor);
 		this.setFont(textFont);
 		this.setIcon(image);
+	}
+	
+	public CustomButton(int width, int height, Color backgroundColor, String buttonText, Color textColor, Font textFont, ImageIcon image, Cursor cursor)
+	{
+		this();
+		this.setPreferredSize(new Dimension (width, height));
+		this.setBackground(backgroundColor);;
+		this.setText(buttonText);
+		this.setForeground(textColor);
+		this.setFont(textFont);
+		this.setIcon(image);
+		this.setCursor(cursor);
 	}
 }

@@ -28,6 +28,8 @@ public class ButtonMouseListener implements MouseListener // ButtonMouseListener
 	
 	private InnerPanel innerPanel; // ButtonMouseListener HAS-AN InnerPanel
 	
+	private OuterPanel outerPanel; // ButtonMouseListener HAS-AN OuterPanel
+	
 	Timer timer = new Timer(10, new ActionListener() 
 	{
 		@Override
@@ -46,7 +48,7 @@ public class ButtonMouseListener implements MouseListener // ButtonMouseListener
 				gameModel.getExperienceModel().increaseExperienceLevel();
 			}
 				
-			innerPanel.updateInnerUI(); // Update
+			outerPanel.updateOuterPanelUI(innerPanel); // Update
 		}
 	});
 	
@@ -82,10 +84,11 @@ public class ButtonMouseListener implements MouseListener // ButtonMouseListener
 		timer.stop();
 	}
 	
-	public ButtonMouseListener(GameModel model, InnerPanel innerView)
+	public ButtonMouseListener(GameModel model, InnerPanel innerView, OuterPanel outerView)
 	{
 		this.gameModel = model;
 		this.innerPanel = innerView;
+		this.outerPanel = outerView;
 	}
 
 }
