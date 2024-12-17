@@ -171,32 +171,54 @@ public class FallingIceCream extends JPanel implements ActionListener
 	}
 	
 	// Updates GUI
-	public void updateGrid()
-	{
-		if ( beforeGrid.isEmpty() )
-		{
-			beforeGrid = make2DArray();
-		}
-		
-        // Iterate from bottom to top to handle falling properly
-        for (int row = rows - 2 ; row >= 0 ; row--) 
-        {
-            for (int col = 0 ; col < cols ; col++) 
-            {
-            	Pixel current = beforeGrid.get(row).get(col);
-            	Pixel below = beforeGrid.get(row+1).get(col);
-            	
-            	if (current.getState() && !below.getState())
-            	{
-                	below.setState(true);
-                	below.setColor(current.getColor());
-                	
-                	current.setState(false);
-                	current.setColor(Color.BLACK);
-            	}
-            }
-            
-        } 
+	public void updateGrid() {
+	    for (int row = rows - 2; row >= 0; row--) { // Start from bottom-2 and move up
+	        for (int col = 0; col < cols; col++) {
+	            Pixel current = grid.get(row).get(col);
+
+	            if (current.getState()) { // Only process active pixels
+	                Pixel below = grid.get(row + 1).get(col);
+
+	                if (!below.getState()) { 
+	                    // Standard falling: Move pixel down if below is empty
+	                    below.setState(true);
+	                    below.setColor(current.getColor());
+
+	                    current.setState(false);
+	                    current.setColor(Color.BLACK);
+	                } else {
+	                    // Fall-over effect if blocked but has space left or right
+	                    boolean canFallLeft = col > 0 && !grid.get(row + 1).get(col - 1).getState();
+	                    boolean canFallRight = col < cols - 1 && !grid.get(row + 1).get(col + 1).getState();
+
+	                    if (canFallLeft || canFallRight) {
+	                        // Randomly choose a direction to fall
+	                        boolean fallLeft = random.nextBoolean();
+
+	                        if (fallLeft && canFallLeft) {
+	                            // Move pixel to the left
+	                            Pixel target = grid.get(row + 1).get(col - 1);
+	                            target.setState(true);
+	                            target.setColor(current.getColor());
+	                        } else if (canFallRight) {
+	                            // Move pixel to the right
+	                            Pixel target = grid.get(row + 1).get(col + 1);
+	                            target.setState(true);
+	                            target.setColor(current.getColor());
+	                        }
+
+	                        // Clear the current pixel
+	                        current.setState(false);
+	                        current.setColor(Color.BLACK);
+	                    }
+	                }
+	            }
+	        }
+	        repaint();
+	    }
+	    repaint();
+
+
      // Deep copy grid to beforeGrid
         beforeGrid = new ArrayList<>();
         

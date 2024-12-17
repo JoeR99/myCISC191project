@@ -1,8 +1,22 @@
 package IceCreamGame;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: 
+ *  
+ * Version/date: 12/16/2024
+ * 
+ * Responsibilities of class: 
+ * 
+ * IceCream parent class for creating flavors from. Is abstract so it must be created through flavors
+ * Contains logic for getting the flavor and its modifiers
+ * 
+ */
+
 public abstract class IceCream
 {
-	
 	private String flavor; // IceCream HAS-A Flavor
 	
 	private int cashModifier; // IceCream HAS-A cashModifier

@@ -1,5 +1,19 @@
 package IceCreamGame;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: 
+ *  
+ * Version/date: 12/16/2024
+ * 
+ * Responsibilities of class: 
+ * 
+ * Flavor class (subclass of IceCream) which inherits from the abstract class IceCream. Contains logic for cones and cone sizes
+ * 
+ */
+
 public class Flavor extends IceCream implements Coneable
 {
 

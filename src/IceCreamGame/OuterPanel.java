@@ -28,6 +28,8 @@ import javax.swing.JRadioButton;
  * Responsibilities of class:
  * 
  * The panel for the center of my outer panel. Contains outer section of the GUI's panels for better organization
+ * Contains Display of multipliers, flavors, and cone radio buttons
+ * Displays creator name and name of the ice cream parlor
  * 
  */
 
@@ -112,7 +114,7 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 	
 	private CardLayout cardLayout = new CardLayout();
 	
-	public OuterPanel(GameModel model)
+	public OuterPanel(GameModel model, String storeName)
 	{
 		this.gameModel = model;
 		
@@ -315,7 +317,11 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 
 		// SOUTHERN PANEL ********************************************************************************************************************************* //
 
-		CustomLabel creatorLabel = new CustomLabel("Programmed By: Joseph Rathbun", defaultSerif, Color.BLACK);
+		CustomLabel storeNameLabel = new CustomLabel("" + storeName, defaultSerif, Color.BLACK);
+		
+		CustomLabel creatorLabel = new CustomLabel("| Programmed By: Joseph Rathbun", defaultSerif, Color.BLACK);
+		
+		southPanel.add(storeNameLabel);
 		southPanel.add(creatorLabel);
 		southPanel.setToolTipText("Programmed By: Joseph Rathbun");		
 		this.add(southPanel, BorderLayout.SOUTH);	

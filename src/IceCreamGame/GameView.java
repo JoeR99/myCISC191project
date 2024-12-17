@@ -12,7 +12,7 @@ import javax.swing.JFrame;
  *  
  * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JFrame.html
  *  
- * Version/date: 10/29/2024
+ * Version/date: 12/16/2024
  * 
  * Responsibilities of class: 
  * 
@@ -31,18 +31,20 @@ public class GameView extends JFrame // GameView IS-A JFrame
 	private static final long serialVersionUID = 1L;
 
 	private GameModel gameModel; // GameView HAS-A GameModel
+	
+	private String storeName = "scoop";
 
 	private final int WIDTH = 1280;
 	private final int HEIGHT = 720;
 
 	private ImageIcon iceCreamGameIcon = new ImageIcon("images/IceCreamGameIcon.png");
 	
-	public GameView(GameModel model)
+	public GameView(GameModel model, String storeName)
 	{
-
 		this.gameModel = model;
-	
-		OuterPanel outerPanel = new OuterPanel(gameModel);
+		this.storeName = storeName;
+		
+		OuterPanel outerPanel = new OuterPanel(gameModel, storeName);
 		Image iconImage = iceCreamGameIcon.getImage();
 
 		this.add(outerPanel);
@@ -52,13 +54,10 @@ public class GameView extends JFrame // GameView IS-A JFrame
 		this.setIconImage(iconImage);
 		this.setSize(new Dimension(WIDTH, HEIGHT));
 		this.setLocationRelativeTo(null);
-		this.setVisible(true);
-		
-	}
-	
-	public void updateGameViewUI()
-	{
-		
-	}
-	
+		this.setVisible(true);	
+	}	
+//	public void updateGameViewUI()
+//	{
+//		
+//	}
 }

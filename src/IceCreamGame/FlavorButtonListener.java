@@ -4,6 +4,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JPanel.html
+ *  
+ * Version/date: 12/16/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * Action Listener for flavor buttons. Changes flavor modifiers and cone size modifiers
+ * 
+ */
+
 public class FlavorButtonListener implements ActionListener
 {
 	private GameModel gameModel; // FlavorButtonListener HAS-A GameModel

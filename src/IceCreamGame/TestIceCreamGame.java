@@ -97,9 +97,10 @@ class TestIceCreamGame
 	
 	@Test
 	void testOuterPanel()
-	{
+	{		
+		String storeName = "Store";
 		// OuterPanel Parameters : GameModel
-		OuterPanel testOuterPanel = new OuterPanel(new GameModel());
+		OuterPanel testOuterPanel = new OuterPanel(new GameModel(), storeName);
 		
 		// Test that OuterPanel IS-A JPanel
 		assertTrue(testOuterPanel instanceof JPanel);
@@ -108,9 +109,10 @@ class TestIceCreamGame
 	@Test
 	void testInnerPanel()
 	{
+		String storeName = "Store";
 		// InnerPanel Parameters : GameModel
 		GameModel testModel = new GameModel();
-		OuterPanel testOuterPanel = new OuterPanel(testModel);
+		OuterPanel testOuterPanel = new OuterPanel(testModel, storeName);
 		InnerPanel testInnerPanel = new InnerPanel(testModel, testOuterPanel);
 		
 		// Test that InnerPanel IS-A JPanel
@@ -166,8 +168,10 @@ class TestIceCreamGame
 	@Test
 	void testGameView()
 	{
+		String storeName = "Store";
+
 		GameModel testModel = new GameModel();
-		GameView testView = new GameView(testModel);
+		GameView testView = new GameView(testModel, storeName);
 		
 		// Test that CustomPanel IS-A JPanel
 		assertTrue(testView instanceof JFrame);

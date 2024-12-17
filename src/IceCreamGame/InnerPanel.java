@@ -27,6 +27,7 @@ import javax.swing.Timer;
  * Responsibilities of class:
  * 
  * The panel for the center of my outer panel. Contains inner section of the GUI's panels for better organization
+ * This is where the falling ice cream object exists (placed in the center)
  * 
  */
 

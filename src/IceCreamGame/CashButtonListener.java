@@ -14,7 +14,7 @@ import java.awt.event.ActionListener;
  * Responsibilities of class:
  * 
  * Action Handler for buttons related to Cash (Cost and Gain)
- * Acts as an ActionListener but is an ActionHandler
+ * Contains handling for shop buttons as well
  * 
  */
 

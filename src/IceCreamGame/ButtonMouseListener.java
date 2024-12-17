@@ -13,12 +13,12 @@ import javax.swing.Timer;
  *  
  * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/java/awt/event/MouseListener.html
  *  
- * Version/date: 10/29/2024
+ * Version/date: 12/16/2024
  * 
  * Responsibilities of class:
  * 
  * Mouse Listener for the Scooping Button. Currently increase cash and exp when mouse hovers over the button with this listener added to it.
- * 
+ * Connects with falling ice cream panel to "drop" an ice cream whenever the button is pressed or hovered over
  */
 
 public class ButtonMouseListener implements MouseListener // ButtonMouseListener IS-A MouseListener
