@@ -12,21 +12,34 @@ import java.util.Random;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/**
+ * Lead Author(s):
+ * @author Joseph Rathbun
+ *  
+ * References: https://docs.oracle.com/en/java/javase/19/docs/api/java.desktop/javax/swing/JPanel.html
+ *  
+ * Version/date: 12/16/2024
+ * 
+ * Responsibilities of class:
+ * 
+ * This panel creates falling ice cream everytime the scooper button is pressed.
+ * The panel for the center of my inner panel. Contains inner section of the GUI's panels for better organization
+ * 
+ */
+
 public class FallingIceCream extends JPanel implements ActionListener
 {
-
-	private ArrayList<ArrayList<Pixel>> grid = new ArrayList<>();
+	private ArrayList<ArrayList<Pixel>> grid;
 	
-	private ArrayList<ArrayList<Pixel>> tempGrid = new ArrayList<>();
+	private ArrayList<ArrayList<Pixel>> beforeGrid;
 	
-	private Pixel defaultPixel = new Pixel(0, 0, false, Color.BLACK);
+//	private Pixel defaultPixel = new Pixel(0, 0, false, Color.BLACK);
+//	
+//	private Pixel currentPixel = new Pixel(0, 0, false, Color.BLACK);
 	
-	private Pixel currentPixel = new Pixel(0, 0, false, Color.BLACK);
-	
-	private final int thickness = 10;
-	
-	private int panelWidth = getWidth();
-	private int panelHeight = getHeight(); 
+	private final int thickness = 10; // Pixel size
+	private int panelWidth = getWidth(); // Number of rows
+	private int panelHeight = getHeight(); // Number of columns
 	
 	private int rows = panelWidth / thickness;
 	private int cols = panelHeight / thickness;
@@ -38,7 +51,8 @@ public class FallingIceCream extends JPanel implements ActionListener
 	// Default Constructor
 	public FallingIceCream()
 	{
-		make2DArray();
+        this.grid = new ArrayList<>();
+        this.beforeGrid = new ArrayList<>();
 		
 		fallingTimer = new Timer(1000 / 24, this);
 		fallingTimer.start();
@@ -65,12 +79,18 @@ public class FallingIceCream extends JPanel implements ActionListener
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         
-        // Draw Grid First (Colors)
-        drawGrid(g);
+        // Update grid dimensions
+        rows = getHeight() / thickness;
+        cols = getWidth() / thickness;
         
-    	// Draw Grid Lines on Top
-        drawGridLines(g);
+        if (grid.isEmpty()) {
+            grid = make2DArray();
+        }
+        
+        drawGrid(g);  // Draw Blank Grid First (Colors)
+        drawGridLines(g); // Draw Grid Lines on Top
     }
+    
     
     private void drawGrid(Graphics g)
     { 	
@@ -104,10 +124,25 @@ public class FallingIceCream extends JPanel implements ActionListener
     	}
 	}
 	
+    // Randomly drop a pixel with a random color at the top row
+    public void dropRandomIceCream() 
+    {
+        int col = random.nextInt(cols); // Pick a random column
+        int row = 0; // Top row of the grid
+
+        if (col >= 0 && col < cols) {
+            Pixel pixel = grid.get(row).get(col);
+            pixel.setState(true);
+            pixel.setColor(randomColor());
+            repaint();
+            System.out.println("Dropped ice cream at Column: " + col);
+        }
+    }
+	
     // Makes a blank grid for ice cream to start appearing on
-	public void make2DArray()
+	public ArrayList<ArrayList<Pixel>> make2DArray()
 	{
-		grid.clear();
+		ArrayList<ArrayList<Pixel>> image = new ArrayList<>(); 
 		
         rows = getHeight() / thickness;
         cols = getWidth() / thickness;
@@ -119,16 +154,16 @@ public class FallingIceCream extends JPanel implements ActionListener
 			{
 				pixelRow.add(new Pixel(row, col, false , Color.BLACK)); // Default black
 			}
-			grid.add(pixelRow);
-			tempGrid.add(pixelRow);
-		}		
+			image.add(pixelRow);
+		}
+		return image;
 	}
 	
 	public Color randomColor()
 	{	
-		int red = random.nextInt(250);
-		int green = random.nextInt(250);
-		int blue = random.nextInt(250);
+		int red = random.nextInt(256);
+		int green = random.nextInt(256);
+		int blue = random.nextInt(256);
 		
 		Color newColor = new Color(red, green, blue);
 	
@@ -138,13 +173,18 @@ public class FallingIceCream extends JPanel implements ActionListener
 	// Updates GUI
 	public void updateGrid()
 	{
+		if ( beforeGrid.isEmpty() )
+		{
+			beforeGrid = make2DArray();
+		}
+		
         // Iterate from bottom to top to handle falling properly
         for (int row = rows - 2 ; row >= 0 ; row--) 
         {
             for (int col = 0 ; col < cols ; col++) 
             {
-            	Pixel current = tempGrid.get(row).get(col);
-            	Pixel below = tempGrid.get(row+1).get(col);
+            	Pixel current = beforeGrid.get(row).get(col);
+            	Pixel below = beforeGrid.get(row+1).get(col);
             	
             	if (current.getState() && !below.getState())
             	{
@@ -155,11 +195,20 @@ public class FallingIceCream extends JPanel implements ActionListener
                 	current.setColor(Color.BLACK);
             	}
             }
-            grid = tempGrid;
-        }  
+            
+        } 
+     // Deep copy grid to beforeGrid
+        beforeGrid = new ArrayList<>();
         
-//		grid = nextGrid;
-//		nextGrid = temp;
+        for (ArrayList<Pixel> row : grid) {
+            ArrayList<Pixel> newRow = new ArrayList<>();
+            for (Pixel pixel : row) {
+                newRow.add(new Pixel(pixel.getRow(), pixel.getCol(), pixel.getState(), pixel.getColor()));
+            }
+            beforeGrid.add(newRow);
+        }
+        
+        grid = beforeGrid;
         
 		repaint();
 	}

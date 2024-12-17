@@ -36,6 +36,8 @@ public class ScienceModel
 	// Flavor
 	private int flavorSciModifier = 1;
 	
+	private int coneSciModifier = 1;
+	
 	// ===================================
 
 	// Getter Methods
@@ -75,6 +77,11 @@ public class ScienceModel
 	public int getFlavorSciModifier()
 	{
 		return flavorSciModifier;
+	}
+	
+	public int getConeSciModifier()
+	{
+		return coneSciModifier;
 	}
 	
 	// ===================================
@@ -123,6 +130,21 @@ public class ScienceModel
 		flavorSciModifier = newModifier;
 	}
 	
+	public void setConeSciModifier(int newModifier)
+	{
+		coneSciModifier = newModifier;
+	}
+	
+	public void addConeSciModifier(int addModifier)
+	{
+		coneSciModifier += addModifier;
+	}
+	
+	public void decreaseConeSciModifier()
+	{
+		coneSciModifier = 1;
+	}
+	
 	// ===================================
 	
 	// Upgrade Checker | Maximum Science Checker
@@ -162,13 +184,13 @@ public class ScienceModel
 	
 	// ===================================
 	
-	public void updateScienceModel()
-	{
-		
-	}
-	
 	public void updateScienceGainMultilier()
 	{
-		scienceGainMultiplier = scienceGainModifier * statScienceModifier * flavorSciModifier;
+		scienceGainMultiplier = scienceGainModifier * statScienceModifier * flavorSciModifier * coneSciModifier;
+	}
+	
+	public void updateScienceModel()
+	{
+		updateScienceGainMultilier();
 	}
 }

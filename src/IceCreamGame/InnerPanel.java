@@ -89,7 +89,7 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		// UPPER PANEL ********************************************************************************************************************************* //
 		
 		scoopingButton.setCursor(scooperCursor);
-		scoopingButton.addMouseListener(new ButtonMouseListener(model, this, outerPanel));
+		scoopingButton.addMouseListener(new ButtonMouseListener(model, this, outerPanel, fallingIceCreamPanel));
 		upperPanel.add(scoopingButton);
 		
 		this.add(upperPanel, BorderLayout.NORTH); // Add Sub Panel to Inner Panel	
@@ -114,7 +114,7 @@ public class InnerPanel extends JPanel // InnerPanel IS-A JPanel
 		leftPanel.add(statPointsLabel); // STAT POINTS
 		
 		// Experience Buttons
-		statCashUpgradeButton.addActionListener(new StatCashUpgradeHandler(gameModel, this));
+		statCashUpgradeButton.addActionListener(new StatCashUpgradeHandler(gameModel, this, outerPanel));
 		leftPanel.add(statCashUpgradeButton);
 		
 		statExperienceUpgradeButton.addActionListener(new StatExperienceUpgradeHandler(gameModel, this, outerPanel));

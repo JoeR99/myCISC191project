@@ -41,7 +41,7 @@ public abstract class IceCream
 		flavor = newFlavor;
 	}
 	
-	public double getCashModifier()
+	public int getCashModifier()
 	{
 		return cashModifier;
 	}
@@ -51,7 +51,7 @@ public abstract class IceCream
 		cashModifier = newModifier;
 	}
 	
-	public double getExpModifier()
+	public int getExpModifier()
 	{
 		return expModifier;
 	}
@@ -61,7 +61,7 @@ public abstract class IceCream
 		expModifier = newModifier;
 	}
 	
-	public double getSciModifier()
+	public int getSciModifier()
 	{
 		return sciModifier;
 	}
@@ -71,7 +71,7 @@ public abstract class IceCream
 		sciModifier = newModifier;
 	}
 	
-	public double getResModifier()
+	public int getResModifier()
 	{
 		return resModifier;
 	}

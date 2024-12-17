@@ -27,6 +27,8 @@ public class ResearchModel
 	
 	private int researchFlavorModifier = 1;
 	
+	private int coneResModifier = 1;
+	
 	private int researchUpgradeTimeCost = 100;
 	
 	// Cash
@@ -89,11 +91,21 @@ public class ResearchModel
 		return researchSciUpgradeTimeCost;
 	}
 	
+	public int getConeResModifier()
+	{
+		return coneResModifier;
+	}
+	
 	// ===================================
 
 	// Setter Methods
 	
 	// ===================================
+	
+	public void setFlavorResModifier(int newModifier)
+	{
+		researchFlavorModifier = newModifier;
+	}
 	
 	public void increaseResearchCount() 
 	{
@@ -145,6 +157,21 @@ public class ResearchModel
 		researchSciUpgradeTimeCost *= 1.1;
 	}
 	
+	public void setConeResModifier(int newModifier)
+	{
+		coneResModifier = newModifier;
+	}
+	
+	public void addConeResModifier(int addModifier)
+	{
+		coneResModifier += addModifier;
+	}
+	
+	public void decreaseConeResModifier()
+	{
+		coneResModifier = 1;
+	}
+	
 	// ===================================
 	
 	// Upgrade Checker
@@ -180,11 +207,11 @@ public class ResearchModel
 	
 	public void updateResearchRate()
 	{
-		researchRate = researchResModifier * researchFlavorModifier;
+		researchRate = researchResModifier * researchFlavorModifier * coneResModifier;
 	}
 	
 	public void updateResearchModel()
 	{
-		
+		updateResearchRate();
 	}
 }

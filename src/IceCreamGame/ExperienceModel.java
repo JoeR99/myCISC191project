@@ -47,6 +47,8 @@ public class ExperienceModel
 	
 	// Flavor
 	private int flavorExpModifier = 1;
+	
+	private int coneExpModifier = 1;
 
 	// ===================================
 
@@ -107,6 +109,11 @@ public class ExperienceModel
 	public int getFlavorExpModifier()
 	{
 		return flavorExpModifier;
+	}
+	
+	public int getConeExpModifier()
+	{
+		return coneExpModifier;
 	}
 	
 	// ===================================
@@ -181,6 +188,21 @@ public class ExperienceModel
 		flavorExpModifier = newModifier;
 	}
 	
+	public void setConeExpModifier(int newModifier)
+	{
+		coneExpModifier = newModifier;
+	}
+	
+	public void addConeExpModifier(int addModifier)
+	{
+		coneExpModifier += addModifier;
+	}
+	
+	public void decreaseConeExpModifier()
+	{
+		coneExpModifier = 1;
+	}
+	
 	// ===================================
 	
 	// Upgrade Checker
@@ -226,12 +248,12 @@ public class ExperienceModel
 	
 	public void updateExperienceMultiplier()
 	{
-		experienceMultiplier = statExperienceModifier * experienceShopEXPModifier * flavorExpModifier;
+		experienceMultiplier = statExperienceModifier * experienceShopEXPModifier * flavorExpModifier * coneExpModifier;
 	}
 	
 	public void updateExperienceModel()
 	{
-		
+		updateExperienceMultiplier();
 	}
 	
 }

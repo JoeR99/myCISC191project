@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
 
 public class ExperienceButtonListener implements ActionListener// ExperienceButtonHandler IS-AN ActionHandler
 {
-
 	public ExperienceButtonListener()
 	{
 		
@@ -32,9 +31,7 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 		// TODO Auto-generated method stub
 		
 	}
-
 }
-
 	// ===================================
 
 	// Stat Upgrade Cash Value Handler Class
@@ -44,12 +41,14 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 	class StatCashUpgradeHandler implements ActionListener
 	{
 		private GameModel gameModel; // StatCashUpgradeHandler HAS-A GameModel
-		private InnerPanel innerView; // StatCashUpgradeHandler HAS-AN InnerPanel
+		private InnerPanel innerPanel; // StatCashUpgradeHandler HAS-AN InnerPanel
+		private OuterPanel outerPanel; // StatCashUpgradeHandler HAS-AN OuterPanel
 		
-		public StatCashUpgradeHandler(GameModel model, InnerPanel innerView)
+		public StatCashUpgradeHandler(GameModel model, InnerPanel innerView, OuterPanel outerView)
 		{
 			this.gameModel = model;
-			this.innerView = innerView;
+			this.innerPanel = innerView;
+			this.outerPanel = outerView;
 		}
 
 		@Override
@@ -62,8 +61,11 @@ public class ExperienceButtonListener implements ActionListener// ExperienceButt
 				gameModel.getExperienceModel().increaseStatCashModifierLevel();
 			
 				gameModel.getCashModel().updateCashMultiplier();
+				
+				innerPanel.updateInnerUI(); // Update UI 
+				outerPanel.updateOuterPanelUI(innerPanel);
 			}
-			innerView.updateInnerUI(); // Update UI 	
+
 		}
 	}
 	

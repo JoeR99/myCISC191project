@@ -30,6 +30,16 @@ public class ButtonMouseListener implements MouseListener // ButtonMouseListener
 	
 	private OuterPanel outerPanel; // ButtonMouseListener HAS-AN OuterPanel
 	
+	private FallingIceCream fallingIce; // ButtonMouseListener HAS-A FallingIceCream
+	
+	public ButtonMouseListener(GameModel model, InnerPanel innerView, OuterPanel outerView, FallingIceCream falling)
+	{
+		this.gameModel = model;
+		this.innerPanel = innerView;
+		this.outerPanel = outerView;
+		this.fallingIce = falling;
+	}
+	
 	Timer timer = new Timer(10, new ActionListener() 
 	{
 		@Override
@@ -37,9 +47,11 @@ public class ButtonMouseListener implements MouseListener // ButtonMouseListener
 		{
 			System.out.println("----- SCOOP -----");
 			
+			// Cash
 			gameModel.getCashModel().increaseCurrentCash();
 			System.out.println("Cash: " + gameModel.getCashModel().getCurrentCash());
 			
+			// Experience
 			gameModel.getExperienceModel().increaseCurrentExperience();
 			System.out.println("Experience: " + gameModel.getExperienceModel().getCurrentExperience());
 			
@@ -47,7 +59,10 @@ public class ButtonMouseListener implements MouseListener // ButtonMouseListener
 			{
 				gameModel.getExperienceModel().increaseExperienceLevel();
 			}
-				
+			
+			// Drop Ice Cream
+			fallingIce.dropRandomIceCream();
+			
 			outerPanel.updateOuterPanelUI(innerPanel); // Update
 		}
 	});
@@ -83,12 +98,4 @@ public class ButtonMouseListener implements MouseListener // ButtonMouseListener
 	{
 		timer.stop();
 	}
-	
-	public ButtonMouseListener(GameModel model, InnerPanel innerView, OuterPanel outerView)
-	{
-		this.gameModel = model;
-		this.innerPanel = innerView;
-		this.outerPanel = outerView;
-	}
-
 }

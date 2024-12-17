@@ -45,6 +45,8 @@ public class CashModel
 	
 	private int flavorCashModifier = 1;
 	
+	private int coneCashModifier = 1;
+	
 	// ===================================
 
 	// Getter Methods
@@ -89,6 +91,11 @@ public class CashModel
 	public int getFlavorCashModifier()
 	{
 		return flavorCashModifier;
+	}
+	
+	public int getConeCashModifier()
+	{
+		return coneCashModifier;
 	}
 	
 	// ===================================
@@ -160,6 +167,20 @@ public class CashModel
 		flavorCashModifier = newModifier;
 	}
 	
+	public void decreaseConeCashModifier()
+	{
+		coneCashModifier = 1;
+	}
+	
+	public void setConeCashModifier(int newModifier)
+	{
+		coneCashModifier = newModifier;
+	}
+	
+	public void addConeCashModifier(int addModifier)
+	{
+		coneCashModifier += addModifier;
+	}
 	// ===================================
 	
 	// Upgrade Checker
@@ -195,12 +216,12 @@ public class CashModel
 	public void updateCashMultiplier()
 	{
 		iceCreamValueModifier = iceCreamValueLevel;
-		cashMultiplier = shopCashModifier * iceCreamValueModifier * statCashModifier * experienceShopCashmodifier * flavorCashModifier;
+		cashMultiplier = shopCashModifier * iceCreamValueModifier * statCashModifier * experienceShopCashmodifier * flavorCashModifier * coneCashModifier;
 	}
 	
 	public void updateCashModel()
 	{
-		
+		updateCashMultiplier();
 	}
 	
 }

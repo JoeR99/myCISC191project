@@ -12,8 +12,10 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.util.HashMap;
 
+import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 
 /**
  * Lead Author(s):
@@ -44,6 +46,7 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 	private Font defaultSerif = new Font("Serif", Font.BOLD, 16);
 	private Font italicSerif_12 = new Font("Serif", Font.ITALIC, 12); // For Shop Text
 	private Font boldSerif_12 = new Font("Serif", Font.BOLD, 12); // For Flavor Buttons
+	private Font boldSerif_11 = new Font("Serif", Font.BOLD, 11); // For Flavor and Cone Text
 
 	// Icons
 	private ImageIcon tempVanillaIcon = new ImageIcon("images/yellow-icecream-cone-32.png");
@@ -56,30 +59,50 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 	private CustomPanel eastPanel = new CustomPanel(WEST_AND_EAST_SIDE, 0, Color.ORANGE);
 		
 	// Western Labels
-	private CustomLabel scooperLevelLabel = new CustomLabel("Scooper Level: 1", italicSerif_12, Color.BLACK);
-	private CustomLabel iceCreamValueLabel = new CustomLabel("Ice Cream Value: 1", italicSerif_12, Color.BLACK);
+	private CustomLabel cashMultiLabel = new CustomLabel("Cash Multiplier: 1x", italicSerif_12, Color.BLACK);
 	private CustomLabel expMultiLabel = new CustomLabel("Experience Multiplier: 1x", italicSerif_12, Color.BLACK);
 	private CustomLabel sciMultiLabel = new CustomLabel("Science Multiplier: 1x", italicSerif_12, Color.BLACK);
+	private CustomLabel resMultiLabel = new CustomLabel("Research Multiplier: 1x", italicSerif_12, Color.BLACK);
 	
-//	private HashMap<String, IceCream> flavorMap = new HashMap<>();
+	// Hash Map for Flavors and Modifier Storage
+	private HashMap<String, Flavor> flavorMap = new HashMap<>();
 	
 	// West - Flavor Buttons
-	private CustomButton vanillaButton = new CustomButton(130, 45, Color.WHITE, "Vanilla", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
-	private CustomButton chocolateButton = new CustomButton(130, 45, Color.DARK_GRAY, "Chocolate", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
-	private CustomButton strawberryButton = new CustomButton(130, 45, Color.PINK, "Strawberry", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
-	private CustomButton neoButton = new CustomButton(130, 45, Color.MAGENTA, "Neopolitan", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
-	private CustomButton mintButton = new CustomButton(130, 45, Color.GREEN, "Mint", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
+	private CustomButton vanillaButton = new CustomButton(130, 42, Color.WHITE, "Vanilla", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
+	private CustomButton chocolateButton = new CustomButton(130, 42, Color.DARK_GRAY, "Chocolate", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
+	private CustomButton strawberryButton = new CustomButton(130, 42, Color.PINK, "Strawberry", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
+	private CustomButton neoButton = new CustomButton(130, 42, Color.MAGENTA, "Neopolitan", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
+	private CustomButton mintButton = new CustomButton(130, 42, Color.GREEN, "Mint", Color.BLACK, boldSerif_12, tempVanillaIcon, scooperCursor);
 	
 	// Flavor Modifier Labels
-	private CustomLabel flavorCashModifierLabel = new CustomLabel("Cash 1x", italicSerif_12, Color.BLACK);
-	private CustomLabel flavorExpModifierLabel = new CustomLabel("Experience 1x", italicSerif_12, Color.BLACK);
-	private CustomLabel flavorSciModifierLabel = new CustomLabel("Science 1x", italicSerif_12, Color.BLACK);
-	private CustomLabel flavorResModifierLabel = new CustomLabel("Research 1x", italicSerif_12, Color.BLACK);
+	private CustomLabel flavorCashModifierLabel = new CustomLabel("Cash 1x", boldSerif_11, Color.BLACK);
+	private CustomLabel flavorExpModifierLabel = new CustomLabel("Experience 1x", boldSerif_11, Color.BLACK);
+	private CustomLabel flavorSciModifierLabel = new CustomLabel("Science 1x", boldSerif_11, Color.BLACK);
+	private CustomLabel flavorResModifierLabel = new CustomLabel("Research 1x", boldSerif_11, Color.BLACK);
+	private CustomLabel currentFlavorlabel = new CustomLabel("Vanilla", new Font("Serif", Font.BOLD, 24), Color.BLACK);
 
+	// Cone Radio Buttons
+	private JRadioButton conedButton = new JRadioButton("Cone");
+	private JRadioButton notConedButton = new JRadioButton("No Cone");
+	private ButtonGroup coneGroup;
+	
+	private JRadioButton smallConeButton = new JRadioButton("S");
+	private JRadioButton mediumConeButton = new JRadioButton("M");
+	private JRadioButton largeConeButton = new JRadioButton("L");
+	private ButtonGroup coneSizeGroup;
+	
+	// Cone Modifier Labels
+	private CustomLabel coneLabel = new CustomLabel("Not Coned", new Font("Serif", Font.BOLD, 17), Color.BLACK);
+	private CustomLabel coneCashLabel = new CustomLabel("Cash 1x", boldSerif_11, Color.BLACK);
+	private CustomLabel coneExpLabel = new CustomLabel("Experience 1x", boldSerif_11, Color.BLACK);
+	private CustomLabel coneSciLabel = new CustomLabel("Science 1x", boldSerif_11, Color.BLACK);
+	private CustomLabel coneResLabel = new CustomLabel("Research 1x", boldSerif_11, Color.BLACK);
 	
 	// Cash Shop Labels and Buttons
 	private CustomButton scooperShopUpgradeButton = new CustomButton(140, 50, Color.YELLOW, "$" + 5, Color.BLACK, italicSerif_12);
 	private CustomButton iceCreamValueShopUpgradeButton = new CustomButton(140, 50, Color.YELLOW, "$" + 20, Color.BLACK, italicSerif_12);
+	private CustomLabel upgradeScooperLabel = new CustomLabel("Scooper Level: 1", boldSerif_12, Color.BLACK); 
+	private CustomLabel upgradeIceCreamValueLabel = new CustomLabel("Ice Cream Value: 1", boldSerif_12, Color.BLACK); 
 
 	// Experience Shop Labels and Buttons
 	private CustomLabel expShopCashUpgradeLabel = new CustomLabel("Cash  x1", italicSerif_12, Color.WHITE);
@@ -109,28 +132,35 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		
 		// WESTERN PANEL ********************************************************************************************************************************* //
 		
-		westPanel.add(scooperLevelLabel);
-		westPanel.add(iceCreamValueLabel);
+		westPanel.add(cashMultiLabel); // Add Labels to West Panel
 		westPanel.add(expMultiLabel);
 		westPanel.add(sciMultiLabel);
+		westPanel.add(resMultiLabel);
+
 	
 		this.add(westPanel, BorderLayout.WEST);
 		westPanel.setLayout(new FlowLayout());
 		
 		CustomPanel westMiddlePanel = new CustomPanel(140, 260, Color.BLUE);
 		
-		// Flavors
-		IceCream vanilla = new Flavor();
-		IceCream chocholate = new Flavor("Chocolate", 3, 1, 1, 2);
-		IceCream strawberry = new Flavor("Strawberry", 1, 2, 2, 1);
-		IceCream neopalitan = new Flavor("Neopolitan", 6, 2, 2, 2);
-		IceCream mint = new Flavor("Mint", 2, 1, 3, 1);
+		// Create IceCream with Flavors and Modifiers
+		Flavor vanilla = new Flavor();
+		Flavor chocholate = new Flavor("Chocolate", 4, 1, 1, 2);
+		Flavor strawberry = new Flavor("Strawberry", 1, 4, 2, 1);
+		Flavor neopalitan = new Flavor("Neopolitan", 6, 2, 2, 2);
+		Flavor mint = new Flavor("Mint", 2, 3, 3, 3);
 
-//		flavorMap.put("Vanilla", vanilla); 
-//		flavorMap.put("Chocolate", chocholate); 
-//		flavorMap.put("Strawberry", strawberry); 
-//		flavorMap.put("Neopolitan", neopalitan);
-//		flavorMap.put("Mint", mint);
+		flavorMap.put("Vanilla", vanilla); // Add Flavors to HashMap with Key (String) and Value (Flavor) attached
+		flavorMap.put("Chocolate", chocholate); 
+		flavorMap.put("Strawberry", strawberry); 
+		flavorMap.put("Neopolitan", neopalitan);
+		flavorMap.put("Mint", mint);
+		
+		vanillaButton.addActionListener(new FlavorButtonListener(model, this, innerPanel, flavorMap));
+		chocolateButton.addActionListener(new FlavorButtonListener(model, this, innerPanel, flavorMap));
+		strawberryButton.addActionListener(new FlavorButtonListener(model, this, innerPanel, flavorMap));
+		neoButton.addActionListener(new FlavorButtonListener(model, this, innerPanel, flavorMap));
+		mintButton.addActionListener(new FlavorButtonListener(model, this, innerPanel, flavorMap));
 		
 		westMiddlePanel.add(vanillaButton); // Add Flavor Buttons
 		westMiddlePanel.add(chocolateButton);
@@ -138,17 +168,57 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		westMiddlePanel.add(neoButton);
 		westMiddlePanel.add(mintButton);
 		
-		vanillaButton.setToolTipText("Cash 1x | Exp 1x | Sci 1x | Res 1x");
+		vanillaButton.setToolTipText("Cash 4x | Exp 1x | Sci 1x | Res 2x");
+		chocolateButton.setToolTipText("Cash 4x | Exp 1x | Sci 1x | Res 2x");
+		strawberryButton.setToolTipText("Cash 1x | Exp 4x | Sci 2x | Res 1x");
+		neoButton.setToolTipText("Cash 6x | Exp 2x | Sci 2x | Res 2x");
+		mintButton.setToolTipText("Cash 2x | Exp 3x | Sci 3x | Res 3x");
 		
-		CustomPanel westLowerPanel = new CustomPanel(140, 260, Color.RED);
+		
+		
+		
+		CustomPanel westLowerPanel = new CustomPanel(140, 260, Color.LIGHT_GRAY);
 		
 		CustomLabel flavorModiferLabel = new CustomLabel("Flavor Modifiers", new Font("Serif", Font.BOLD, 17), Color.BLACK);
 		
+		westLowerPanel.add(currentFlavorlabel);
 		westLowerPanel.add(flavorModiferLabel);
 		westLowerPanel.add(flavorCashModifierLabel); // Add Modifier Labels
 		westLowerPanel.add(flavorExpModifierLabel);
 		westLowerPanel.add(flavorSciModifierLabel);
 		westLowerPanel.add(flavorResModifierLabel);
+		
+        // Group them to allow only one selection
+        coneGroup = new ButtonGroup(); // Cone Group
+        coneGroup.add(conedButton);
+        coneGroup.add(notConedButton);
+        
+        coneSizeGroup = new ButtonGroup(); // Cone Size Group
+        coneSizeGroup.add(smallConeButton);
+        coneSizeGroup.add(mediumConeButton);
+        coneSizeGroup.add(largeConeButton);
+        
+        
+        // Add Action Listeners to each Radio Button
+        conedButton.addActionListener(new ConeButtonHandler(model, this, innerPanel));
+        notConedButton.addActionListener(new NoConeButtonHandler(model, this, innerPanel));
+        
+        smallConeButton.addActionListener( new SmallConeSizeButtonHandler(model, this, innerPanel));
+        mediumConeButton.addActionListener( new MediumConeSizeButtonHandler(model, this, innerPanel));
+        largeConeButton.addActionListener( new LargeConeSizeButtonHandler(model, this, innerPanel));
+		
+		westLowerPanel.add(conedButton); // Add Cone  and Cone Size Radio Buttons
+		westLowerPanel.add(notConedButton);	
+		westLowerPanel.add(smallConeButton);
+		westLowerPanel.add(mediumConeButton);
+		westLowerPanel.add(largeConeButton);
+		
+		westLowerPanel.add(coneLabel); // Add Cone Modifier Labels
+		westLowerPanel.add(coneCashLabel);
+		westLowerPanel.add(coneExpLabel);
+		westLowerPanel.add(coneSciLabel);
+		westLowerPanel.add(coneResLabel);
+		
 		
 		westPanel.add(westMiddlePanel);
 		westPanel.add(westLowerPanel);
@@ -175,8 +245,7 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		CustomLabel shopLabel = new CustomLabel("Shop Upgrades", new Font("Serif", Font.BOLD, 16), Color.BLUE);
 		shopIceCreamPanel.add(shopLabel);
 		
-		// Scooper Upgrade Label
-		CustomLabel upgradeScooperLabel = new CustomLabel("Scooper!", defaultSerif, Color.BLACK); 
+		// Scooper Upgrade Label 
 		shopIceCreamPanel.add(upgradeScooperLabel);
 		
 		// Scooper Upgrade Button
@@ -184,7 +253,6 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		shopIceCreamPanel.add(scooperShopUpgradeButton);
 		
 		// Ice Cream Value Upgrade Label
-		CustomLabel upgradeIceCreamValueLabel = new CustomLabel("Ice Cream Value!", new Font("Serif", Font.BOLD, 12), Color.BLACK);
 		shopIceCreamPanel.add(upgradeIceCreamValueLabel);
 		
 		// Ice Cream Value Upgrade Button
@@ -267,22 +335,34 @@ public class OuterPanel extends JPanel // OuterPanel IS-A JPanel
 		cashLabel.setText("Cash: $" + cashModel.getCurrentCash());
 			
 		// West Labels
-		scooperLevelLabel.setText("Scooper Level: " + gameModel.getCashModel().getScooperLevel());
-		iceCreamValueLabel.setText("Ice Cream Value: " + gameModel.getCashModel().getIceCreamValueLevel());
+		cashMultiLabel.setText("Cash Multiplier: " + gameModel.getCashModel().getCashMultiplier() + "x");
 		expMultiLabel.setText("Experience Multiplier: " + gameModel.getExperienceModel().getExperienceMultiplier() + "x");
 		sciMultiLabel.setText("Science Multiplier: " + gameModel.getScienceModel().getScienceGainMultiplier() + "x");
+		resMultiLabel.setText("Research Multiplier: " + gameModel.getResearchModel().getResearchRate() + "x");
 		
 		// West Flavor Modifier Labels
+		currentFlavorlabel.setText("" + gameModel.getCurrentFlavor());
+		
 		flavorCashModifierLabel.setText("Cash " + gameModel.getCashModel().getFlavorCashModifier() + "x");
 		flavorExpModifierLabel.setText("Experience " + gameModel.getExperienceModel().getFlavorExpModifier() + "x");
 		flavorSciModifierLabel.setText("Science " + gameModel.getScienceModel().getFlavorSciModifier() + "x");
 		flavorResModifierLabel.setText("Research " + gameModel.getResearchModel().getFlavorResModifier() + "x");
 		
-		// Cash Shop Button Text 
+		// West Cone Modifer Labels
+		coneLabel.setText("" + gameModel.getIceCreamFlavor().getCone());
+		coneCashLabel.setText("Cash " + gameModel.getCashModel().getConeCashModifier() + "x");
+		coneExpLabel.setText("Experience " + gameModel.getExperienceModel().getConeExpModifier() + "x");
+		coneSciLabel.setText("Science " + gameModel.getScienceModel().getConeSciModifier() + "x");
+		coneResLabel.setText("Research " + gameModel.getResearchModel().getConeResModifier() + "x");
+		
+		
+		// East Cash Shop Button Text 
 		scooperShopUpgradeButton.setText("$" + gameModel.getCashModel().getScooperUpgradeCost());
 		iceCreamValueShopUpgradeButton.setText("$" + gameModel.getCashModel().getIceCreamValueUpgradeCost());
+		upgradeScooperLabel.setText("Scooper Level: " + gameModel.getCashModel().getScooperLevel());
+		upgradeIceCreamValueLabel.setText("Ice Cream Value: " + gameModel.getCashModel().getIceCreamValueLevel());
 		
-		// Experience Shop Button Text
+		// East Experience Shop Button Text
 		expShopCashUpgradeLabel.setText("Cash  x" + gameModel.getCashModel().getEXPShopCashModifier());
 		expShopCashUpgradeButton.setText("EXP " + gameModel.getExperienceModel().getExperienceShopCashUpgradeCost());
 		expGainShopLabel.setText("EXP  x" + gameModel.getExperienceModel().getExperienceShopEXPModifier());

@@ -27,12 +27,14 @@ import java.awt.event.ActionListener;
 public class CashButtonListener implements ActionListener // CashButtonHandler IS-AN ActionHandler
 {		
 	private GameModel gameModel; // CashButtonHandler HAS-A GameModel
-	private InnerPanel innerView; // CashButtonHandler HAS-AN InnerPanel
+	private InnerPanel innerPanel; // CashButtonHandler HAS-AN InnerPanel
+	private FallingIceCream fallingIce;
 	
-	public CashButtonListener(GameModel model, InnerPanel innerView)
+	public CashButtonListener(GameModel model, InnerPanel innerView, FallingIceCream falling)
 	{
 		this.gameModel = model;
-		this.innerView = innerView;
+		this.innerPanel = innerView;
+		this.fallingIce = falling;
 	}
 	
 	@Override
@@ -42,7 +44,9 @@ public class CashButtonListener implements ActionListener // CashButtonHandler I
 		gameModel.getCashModel().increaseCurrentCash();
 		System.out.println("Cash: " + gameModel.getCashModel().getCurrentCash());
 
-        innerView.updateInnerUI(); // Update UI 
+		fallingIce.dropRandomIceCream();
+		
+		innerPanel.updateInnerUI(); // Update UI 
 	}
 }
 
@@ -55,14 +59,14 @@ public class CashButtonListener implements ActionListener // CashButtonHandler I
 	class ShopCashScooperUpgradeHandler implements ActionListener
 	{
 		private GameModel gameModel; // ShopCashScooperUpgradeHandler HAS-A GameModel
-		private OuterPanel outerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
-		private InnerPanel innerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN InnerPanel
+		private OuterPanel outerPanel; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
+		private InnerPanel innerPanel; // ShopCashIceCreamValueUpgradeHandler HAS-AN InnerPanel
 
 		public ShopCashScooperUpgradeHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
 		{
 			this.gameModel = model;
-			this.outerView = outerView;
-			this.innerView = innerView;
+			this.outerPanel = outerView;
+			this.innerPanel = innerView;
 		}
 		
 		@Override
@@ -73,7 +77,7 @@ public class CashButtonListener implements ActionListener // CashButtonHandler I
 			gameModel.getCashModel().buyScooperUpgrade();;
 			System.out.println("--- UPGRADE SCOOPER to Level: " + gameModel.getCashModel().getScooperLevel() + " ---");
 			
-			outerView.updateOuterPanelUI(innerView); // Update UI
+			outerPanel.updateOuterPanelUI(innerPanel); // Update UI
 		}
 	}
 	
@@ -86,14 +90,14 @@ public class CashButtonListener implements ActionListener // CashButtonHandler I
 	class ShopCashIceCreamValueUpgradeHandler implements ActionListener
 	{
 		private GameModel gameModel; // ShopCashIceCreamValueUpgradeHandler HAS-A GameModel
-		private OuterPanel outerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
-		private InnerPanel innerView; // ShopCashIceCreamValueUpgradeHandler HAS-AN InnerPanel
+		private OuterPanel outerPanel; // ShopCashIceCreamValueUpgradeHandler HAS-AN OuterPanel
+		private InnerPanel innerPanel; // ShopCashIceCreamValueUpgradeHandler HAS-AN InnerPanel
 		
 		public ShopCashIceCreamValueUpgradeHandler(GameModel model, OuterPanel outerView, InnerPanel innerView)
 		{
 						this.gameModel = model;
-			this.outerView = outerView;
-			this.innerView = innerView;
+			this.outerPanel = outerView;
+			this.innerPanel = innerView;
 		}
 		
 		@Override
@@ -105,7 +109,7 @@ public class CashButtonListener implements ActionListener // CashButtonHandler I
 			}
 			System.out.println("UPGRADE ICE CREAM VALUE");
 			
-			outerView.updateOuterPanelUI(innerView);	
+			outerPanel.updateOuterPanelUI(innerPanel);	
 		}
 		
 

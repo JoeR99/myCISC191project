@@ -23,6 +23,8 @@ public class GameModel
 	private ExperienceModel experienceModel; // GameModel HAS-AN ExperienceModel
 	private ScienceModel scienceModel; // GameModel HAS-A ScienceModel
 	private ResearchModel researchModel; // GameModel HAS-A ResearchModel
+	
+	private Flavor currentFlavor = new Flavor();
 
 	public GameModel()
 	{
@@ -56,6 +58,21 @@ public class GameModel
 	public ResearchModel getResearchModel()
 	{
 		return researchModel;
+	}
+	
+	public Flavor getIceCreamFlavor()
+	{
+		return currentFlavor;
+	}
+	
+	public void setCurrentFlavor(Flavor newFlavor)
+	{
+		currentFlavor = newFlavor;
+	}
+	
+	public String getCurrentFlavor()
+	{
+		return currentFlavor.getFlavor();
 	}
 	
 	// ===================================
